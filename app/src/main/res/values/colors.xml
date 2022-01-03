@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="ic_launcher1_background">#FFFFFF</color>
+    <color name="ic_launcher_background">#FFFFFF</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="green">#00FF00</color>
+    <color name="darkGreen">#01AE01</color>
+    <color name="blue">#1E39D3</color>
+
+    <color name="grey">#838383</color>
+    <color name="darkGray">#E1E0E0</color>
+    <color name="lightGray">#F3F3F3</color>
+    <color name="highlightColor">#96D3FB</color>
+    <color name="red">#FF0000</color>
+
+    <color name="splash_background">#FFFFFF</color>
+    <color name="splash_toolbar_background">#FFFFFF</color>
+    //81CDFF
 </resources>

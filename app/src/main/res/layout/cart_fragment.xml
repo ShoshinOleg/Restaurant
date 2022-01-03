@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/normalCartBlock"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/orderPartNestedScroll"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/doOrderCard"
+
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:nestedScrollingEnabled="false"
+                    />
+<!--                <TextView-->
+<!--                    android:id="@+id/totalPriceLabel"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/recyclerView"-->
+<!--                    android:text="Сумма заказа"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="18sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:paddingVertical="@dimen/smallPadding"-->
+<!--                    android:paddingHorizontal="@dimen/padding"-->
+<!--                    />-->
+<!--                <TextView-->
+<!--                    android:id="@+id/totalPrice"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:paddingHorizontal="@dimen/padding"-->
+<!--                    app:layout_constraintTop_toTopOf="@+id/totalPriceLabel"-->
+<!--                    app:layout_constraintBottom_toBottomOf="@+id/totalPriceLabel"-->
+<!--                    app:layout_constraintStart_toEndOf="@+id/totalPriceLabel"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    android:gravity="end|center_vertical"-->
+<!--                    tools:text="1000 Р"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="18sp"-->
+<!--                    android:textStyle="bold"-->
+
+<!--                    />-->
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:id="@+id/doOrder"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/orderPartNestedScroll"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            android:background="@drawable/button_green"-->
+<!--            android:layout_margin="@dimen/padding"-->
+<!--            android:text="Перейти к оформлению"-->
+<!--            android:textColor="@color/darkGreen"-->
+<!--            />-->
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/doOrderCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="8dp"
+            app:cardUseCompatPadding="true"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginHorizontal="@dimen/smallPadding"
+
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:background="@drawable/ripple_effect"
+            >
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/doOrder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/button_green"
+                android:foreground="?android:attr/selectableItemBackground"
+
+                >
+                <TextView
+                    android:id="@+id/doOrderText"
+                    android:padding="@dimen/padding"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/darkGreen"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textSize="16sp"
+                    android:text="Оформить заказ"
+                    />
+                <TextView
+                    android:id="@+id/price"
+                    android:padding="@dimen/padding"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textColor="@color/darkGreen"
+                    android:textSize="16sp"
+                    android:text="2582 ₽"
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/emptyCartBlock"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:padding="@dimen/padding"
+            >
+            <ImageView
+                android:id="@+id/emptyCartImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:layout_marginHorizontal="64dp"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/red_cart_2"
+                />
+            <TextView
+                android:id="@+id/emptyCartText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding"
+                app:layout_constraintTop_toBottomOf="@+id/emptyCartImage"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:text="Корзина пуста"
+                />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/toMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+
+                app:layout_constraintTop_toBottomOf="@+id/emptyCartText"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+
+                android:layout_marginTop="@dimen/smallPadding"
+                android:layout_marginBottom="@dimen/padding"
+                android:layout_marginHorizontal="@dimen/largePadding"
+                android:background="@drawable/button_green"
+                android:textColor="#53AF4B"
+
+                android:text="Меню" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintTop_toTopOf="parent"
+
+        app:cardElevation="4dp"
+        app:cardCornerRadius="4dp"
+        app:cardUseCompatPadding="true"
+
+        android:focusable="true"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="300dp"
+
+
+            >
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="1"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:src="@drawable/ic_menu"
+                />
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/image"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:paddingHorizontal="@dimen/padding"
+                android:paddingTop="@dimen/smallPadding"
+                android:maxLines="2"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                tools:text="Название блюда"
+                />
+
+            <TextView
+                android:id="@+id/weight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:paddingHorizontal="@dimen/padding"
+                tools:text="90 г"
+                app:layout_constraintBottom_toTopOf="@+id/priceCard"
+                app:layout_constraintVertical_bias="0"
+                />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/priceCard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginHorizontal="@dimen/smallPadding"
+                android:layout_marginBottom="@dimen/smallPadding"
+                app:cardBackgroundColor="@color/lightGray"
+                app:cardCornerRadius="10dp"
+                app:cardUseCompatPadding="true"
+                android:focusable="true"
+                app:cardElevation="0dp"
+
+                >
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/smallPadding"
+                    tools:text="159 ₽"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    />
+
+            </androidx.cardview.widget.CardView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

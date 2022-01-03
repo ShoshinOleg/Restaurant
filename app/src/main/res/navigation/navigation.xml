@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/menu">
+
+    <fragment
+        android:id="@+id/menu"
+        android:name="com.shoshin.restaurant.ui.fragments.categories.MenuFragment"
+        android:label="Меню"
+        tools:layout="@layout/menu_fragment"
+        >
+        <action
+            android:id="@+id/toCategory"
+            app:destination="@+id/menuCategory"
+            />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/menuCategory"
+        android:name="com.shoshin.restaurant.ui.fragments.categories.category.MenuCategoryFragment"
+        tools:layout="@layout/menu_category_fragment"
+        >
+        <argument
+            android:name="category"
+            app:argType="com.shoshin.domain_abstract.entities.category.MenuCategory"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/cart"
+        android:name="com.shoshin.restaurant.ui.fragments.cart.CartFragment"
+        android:label="Корзина"
+        tools:layout="@layout/cart_fragment"
+        >
+        <action
+            android:id="@+id/toMenu"
+            app:destination="@+id/menu"
+            />
+
+    </fragment>
+
+</navigation>
