@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Restaurant</string>
+    <string name="profile_title">Профиль</string>
+    <string name="menu_title">Меню</string>
+    <string name="cart_title">Корзина</string>
+    <string name="gram_weight">%1$d гр</string>
+    <string name="rubles_price">%1$d ₽</string>
+    <string name="orders_created">Совершено заказов</string>
+    <string name="image_description_locations">Изображение - мои адреса</string>
+    <string name="my_locations">Мои адреса</string>
+    <string name="right_arrow_description">Стрелка вправо</string>
+    <string name="settings">Настройки</string>
+    <string name="image_descriptions_settings">Изображение - настройки</string>
+    <string name="image_description_logout">Выход из аккаунта</string>
+    <string name="logout">Выход</string>
+    <string name="sms_code">Код из SMS</string>
+    <string name="code">Код</string>
+    <string name="next">Далее</string>
+    <string name="input_your_phone_number">Введите свой номер телефона</string>
+    <string name="phone">Телефон</string>
 </resources>

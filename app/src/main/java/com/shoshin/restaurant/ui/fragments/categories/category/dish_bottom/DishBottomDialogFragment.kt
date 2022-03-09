@@ -103,7 +103,7 @@ class DishBottomDialogFragment:
             count += 1
             item.count = item.count!! + 1
             binding.countBar.count.text = "$count"
-            binding.price.text = "${item.getTotalPrice()} ₽"
+            binding.price.text = context?.getString(R.string.rubles_price, item.getTotalPrice())
         }
 
         binding.countBar.removeCard.setOnClickListener {
@@ -112,7 +112,7 @@ class DishBottomDialogFragment:
                 item.count = item.count!! - 1
                 binding.countBar.count.text = "$count"
             }
-            binding.price.text = "${item?.getTotalPrice()} ₽"
+            binding.price.text = context?.getString(R.string.rubles_price, item.getTotalPrice())
         }
         binding.doOrderCard.setOnClickListener {
             onDoOrderCard()
@@ -121,7 +121,7 @@ class DishBottomDialogFragment:
     }
 
     fun updatePrice() {
-        binding.price.text = "${item?.getTotalPrice()} ₽"
+        binding.price.text = context?.getString(R.string.rubles_price, item.getTotalPrice())
     }
 
     private fun fillImage() {
@@ -138,7 +138,7 @@ class DishBottomDialogFragment:
     }
 
     private fun fillOtherInfo() {
-        binding.otherInfo.text = "${item?.weight} гр"
+        binding.otherInfo.text = context?.getString(R.string.gram_weight, item.weight)
     }
 
     override fun onOptionClick(option: DishOption) {
@@ -160,9 +160,9 @@ class DishBottomDialogFragment:
     }
 
     private fun checkNecessaryOptions(): Boolean {
-        val listOptionOk = MutableList(adapter.options?.size!!) {false}
-        for(index in adapter.options?.indices!!) {
-            listOptionOk[index] = adapter.options!![index].checkOption()
+        val listOptionOk = MutableList(adapter.getItems().size) {false}
+        for(index in adapter.getItems().indices) {
+            listOptionOk[index] = adapter.getItems()[index].checkOption()
         }
         for(optionOk in listOptionOk) {
             if(!optionOk) {

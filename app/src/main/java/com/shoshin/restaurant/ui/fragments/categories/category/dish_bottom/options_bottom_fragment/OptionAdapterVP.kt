@@ -22,9 +22,7 @@ class OptionAdapterVP(
         Log.e("size=", "${options?.size}")
     }
 
-    override fun getCount(): Int {
-        return options?.size ?: 0
-    }
+    override fun getCount(): Int = options?.size ?: 0
 
     override fun getItem(position: Int): Fragment {
         return OptionFragment.newInstance(options!![position])

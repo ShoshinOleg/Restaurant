@@ -2,36 +2,33 @@ package com.shoshin.restaurant.ui.fragments.categories.category.dish_bottom.opti
 
 import android.view.View
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.RecyclerView
 import com.shoshin.domain_abstract.entities.dish.DishOption
 import com.shoshin.restaurant.R
 import com.shoshin.restaurant.databinding.DishOptionHolderBinding
+import com.shoshin.restaurant.ui.common.BaseViewHolder
 
 class OptionHolder(
     itemView: View,
     private val onClickListener: OnOptionClick
-):  RecyclerView.ViewHolder(itemView)
-
-{
+):  BaseViewHolder<DishOption>(itemView) {
     interface OnOptionClick {
         fun onOptionClick(option: DishOption)
     }
 
     private val binding = DishOptionHolderBinding.bind(itemView)
-    private var option: DishOption? = null
 
     init {
         itemView.setOnClickListener {
-            onClickListener.onOptionClick(option!!)
+            onClickListener.onOptionClick(item!!)
         }
     }
 
 
-    fun bind(itemOption: DishOption) {
-        option = itemOption
-        binding.name.text = option?.name
-        option?.let {
-            option?.isChecked?.let {
+    override fun bind(item: DishOption) {
+        super.bind(item)
+        binding.name.text = item.name
+        item.let {
+            item.isChecked?.let {
                 if(!it) {
                     binding.name.setTextColor(
                         ContextCompat.getColor(

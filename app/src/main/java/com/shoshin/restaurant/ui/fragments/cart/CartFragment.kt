@@ -13,8 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.shoshin.restaurant.R
 import com.shoshin.restaurant.databinding.CartFragmentBinding
-import com.shoshin.restaurant.entities.CartItem
-import com.shoshin.restaurant.main.app.App
+import com.shoshin.data.db.entities.cart.CartItem
 
 class CartFragment:
     Fragment(R.layout.cart_fragment),
@@ -91,7 +90,7 @@ class CartFragment:
 
     private fun subscribeTotalPrice() {
         cartViewModel?.subscribeTotalPrice()?.observe(viewLifecycleOwner, {
-            binding.price.text = "$it ₽"
+            binding.price.text = context?.getString(R.string.rubles_price, it)
         })
     }
 

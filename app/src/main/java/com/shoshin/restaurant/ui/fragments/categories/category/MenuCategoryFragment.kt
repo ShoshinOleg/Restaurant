@@ -10,22 +10,25 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.shoshin.domain_abstract.common.Reaction
-import com.shoshin.domain_abstract.entities.category.MenuCategory
+import com.shoshin.domain_abstract.entities.category.Category
 import com.shoshin.domain_abstract.entities.dish.Dish
 import com.shoshin.restaurant.R
 import com.shoshin.restaurant.common.argument
 import com.shoshin.restaurant.databinding.MenuCategoryFragmentBinding
-import com.shoshin.restaurant.ui.common.ViewModelEvent
 import com.shoshin.restaurant.ui.fragments.cart.CartViewModel
 import com.shoshin.restaurant.ui.fragments.categories.category.dish_bottom.DishBottomDialogFragment
 import com.shoshin.restaurant.ui.fragments.categories.category.dishes_recycler.DishAdapter
 import com.shoshin.restaurant.ui.fragments.categories.category.dishes_recycler.DishHolder
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MenuCategoryFragment:
     Fragment(R.layout.menu_category_fragment),
-    DishHolder.OnClickListener, DishHolder.OnPriceClickListener {
+    DishHolder.OnClickListener,
+    DishHolder.OnPriceClickListener
+{
     private val binding by viewBinding(MenuCategoryFragmentBinding::bind)
-    private var category: MenuCategory by argument()
+    private var category: Category by argument()
     private val viewModel: MenuCategoryViewModel by viewModels()
     private lateinit var adapter: DishAdapter
     private var cartViewModel: CartViewModel?  = null
@@ -52,8 +55,9 @@ class MenuCategoryFragment:
     private fun subscribeDishes() {
         viewModel.dishes.observe(viewLifecycleOwner, { event ->
             when(event) {
-                is ViewModelEvent.Success -> showSuccess(event.data)
-                is ViewModelEvent.Download -> showDownload()
+                is Reaction.Success -> showSuccess(event.data)
+                is Reaction.Progress -> showDownload()
+                else -> {}
             }
         })
     }
@@ -72,7 +76,7 @@ class MenuCategoryFragment:
 
 
     private fun showSuccess(dishes :List<Dish>) {
-        adapter.setupDishes(dishes)
+        adapter.setupItems(dishes)
         toDataMode()
     }
 

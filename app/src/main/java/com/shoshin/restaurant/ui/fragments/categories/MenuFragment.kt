@@ -8,11 +8,13 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.shoshin.domain_abstract.entities.category.MenuCategory
+import com.shoshin.domain_abstract.common.Reaction
+import com.shoshin.domain_abstract.entities.category.Category
 import com.shoshin.restaurant.R
 import com.shoshin.restaurant.databinding.MenuFragmentBinding
-import com.shoshin.restaurant.ui.common.ViewModelEvent
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MenuFragment :
     Fragment(R.layout.menu_fragment),
     MenuCategoryHolder.OnCategoryClickListener
@@ -37,15 +39,15 @@ class MenuFragment :
     private fun subscribeCategories() {
         categoriesViewModel.categories.observe(viewLifecycleOwner, { event ->
             when(event) {
-                is ViewModelEvent.Download -> toDownloadMode()
-                is ViewModelEvent.Error -> showError(event)
-                is ViewModelEvent.Success -> showSuccessData(event.data)
+                is Reaction.Progress -> toDownloadMode()
+                is Reaction.Error -> showError(event)
+                is Reaction.Success -> showSuccessData(event.data)
             }
         })
     }
 
-    private fun showSuccessData(categories: List<MenuCategory>) {
-        menuCategoryAdapter.setupCategories(categories)
+    private fun showSuccessData(categories: List<Category>) {
+        menuCategoryAdapter.setupItems(categories)
         toDataMode()
     }
 
@@ -67,11 +69,11 @@ class MenuFragment :
         binding.errorLayout.isVisible = true
     }
 
-    private fun showError(event: ViewModelEvent.Error<List<MenuCategory>>) {
+    private fun showError(event: Reaction.Error) {
         toErrorMode()
     }
 
-    override fun onCategoryClick(category: MenuCategory) {
+    override fun onCategoryClick(category: Category) {
         findNavController().navigate(
             MenuFragmentDirections.toCategory(category)
         )

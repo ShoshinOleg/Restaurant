@@ -1,17 +1,16 @@
 package com.shoshin.restaurant.ui.fragments.categories
 
 import android.view.View
-import androidx.recyclerview.widget.RecyclerView
-import com.shoshin.domain_abstract.entities.category.MenuCategory
+import com.shoshin.domain_abstract.entities.category.Category
 import com.shoshin.restaurant.R
 import com.shoshin.restaurant.databinding.MenuCategoryHolderBinding
+import com.shoshin.restaurant.ui.common.BaseViewHolder
 import com.squareup.picasso.Picasso
 
 class MenuCategoryHolder (
     itemView: View,
     private val onClickListener: OnCategoryClickListener
-) : RecyclerView.ViewHolder(itemView), View.OnClickListener{
-    private var category: MenuCategory? = null
+): BaseViewHolder<Category>(itemView), View.OnClickListener{
     private var binding = MenuCategoryHolderBinding.bind(itemView)
 
     init {
@@ -19,20 +18,19 @@ class MenuCategoryHolder (
     }
 
     interface OnCategoryClickListener {
-        fun onCategoryClick(category: MenuCategory)
+        fun onCategoryClick(category: Category)
     }
 
-    fun bind(category: MenuCategory) {
-        this.category = category
-        binding.name.text = category.name
+    override fun bind(item: Category) {
+        super.bind(item)
+        binding.name.text = item.name
         Picasso.get()
-            .load(category.imageURL)
+            .load(item.imageURL)
             .placeholder(R.drawable.ic_menu)
             .into(binding.image)
     }
 
     override fun onClick(v: View?) {
-        category?.let { onClickListener.onCategoryClick(it) }
+        item?.let { onClickListener.onCategoryClick(it) }
     }
-
 }

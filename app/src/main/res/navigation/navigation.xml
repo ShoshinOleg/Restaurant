@@ -25,7 +25,7 @@
         >
         <argument
             android:name="category"
-            app:argType="com.shoshin.domain_abstract.entities.category.MenuCategory"/>
+            app:argType="com.shoshin.domain_abstract.entities.category.Category"/>
     </fragment>
 
     <fragment
@@ -38,6 +38,38 @@
             android:id="@+id/toMenu"
             app:destination="@+id/menu"
             />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.shoshin.restaurant.ui.fragments.profile.ProfileFragment"
+        android:label="Профиль"
+        tools:layout="@layout/profile_fragment"
+        />
+
+    <fragment
+        android:id="@+id/loginEnterPhone"
+        android:name="com.shoshin.restaurant.ui.fragments.login.LoginEnterNumberPhoneFragment"
+        android:label="Вход"
+        tools:layout="@layout/login_enter_number_phone_fragment"
+        >
+        <action
+            android:id="@+id/actionNavigateToEnterCode"
+            app:destination="@id/loginEnterCode" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginEnterCode"
+        android:name="com.shoshin.restaurant.ui.fragments.login.LoginEnterCodeFragment"
+        tools:label="Код"
+        tools:layout="@layout/login_enter_code_fragment"
+        >
+        <argument
+            android:name="phone_number"
+            app:argType="string"/>
+        <argument
+            android:name="verificationId"
+            app:argType="string" />
 
     </fragment>
 

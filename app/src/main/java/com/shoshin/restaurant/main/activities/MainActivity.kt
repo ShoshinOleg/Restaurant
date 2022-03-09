@@ -14,11 +14,15 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.nex3z.notificationbadge.NotificationBadge
 import com.shoshin.restaurant.R
 import com.shoshin.restaurant.databinding.ActivityMainBinding
 import com.shoshin.restaurant.ui.fragments.cart.CartViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private val binding by viewBinding(ActivityMainBinding::bind)
     private lateinit var navController: NavController
@@ -33,12 +37,46 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
 
         val topLevelDestinations = setOf(
-            R.id.menu
+            R.id.profile,
+            R.id.menu,
+            R.id.cart
         )
         navController = findNavController(R.id.fragmentContainer)
         appBarConfiguration = AppBarConfiguration(topLevelDestinations)
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.bottomNavigationView.setupWithNavController(navController)
+
+        binding.bottomNavigationView.setOnItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.profile ->
+                    if(Firebase.auth.currentUser == null) {
+                        navController.navigate(R.id.loginEnterPhone)
+                    } else {
+                        navController.navigate(R.id.profile)
+                    }
+                else -> navController.navigate(item.itemId)
+            }
+            true
+        }
+
+        //        binding.bottomNavigationView.setOnItemSelectedListener {  item ->
+        //            when(item.itemId) {
+        //                R.id.profile ->
+        //                    if(Firebase.auth.currentUser == null) {
+        //                        navController.navigate(R.id.loginEnterPhone)
+        //                    } else {
+        //                        navController.navigate(R.id.profile)
+        //                    }
+        //                R.id.orders ->
+        //                    if(Firebase.auth.currentUser == null) {
+        //                        navController.navigate(R.id.loginEnterPhone)
+        //                    } else {
+        //                        navController.navigate(R.id.orders)
+        //                    }
+        //                else -> navController.navigate(item.itemId)
+        //            }
+        //            true
+        //        }
 
         cartViewModel = ViewModelProvider(this).get(CartViewModel::class.java)
         cartViewModel?.subscribeCartItemsCount()?.observe(this, {

@@ -6,19 +6,22 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.shoshin.data.db.entities.cart.CartDao
 import com.shoshin.domain_abstract.entities.dish.Dish
-import com.shoshin.restaurant.entities.CartItem
-import com.shoshin.restaurant.local_db.mappers.MenuItemToCartItemMapper
+import com.shoshin.data.db.entities.cart.CartItem
+import com.shoshin.data.db.entities.cart.MenuItemToCartItemMapper
 import com.shoshin.restaurant.main.app.App
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class CartViewModel: ViewModel() {
+@HiltViewModel
+class CartViewModel @Inject constructor(
+    private val cartDao: CartDao
+): ViewModel() {
     private var mutableCart: MutableLiveData<List<CartItem?>> = MutableLiveData()
     private var mutableTotalPrice: MutableLiveData<Int> = MutableLiveData()
     private var mutableCartItemsCount: MutableLiveData<Int> = MutableLiveData()
-    private val cartDao = App.instance.getDatabase().cartDao()
     private val mapper = MenuItemToCartItemMapper()
-
-
 
     init {
         initCart()
@@ -32,7 +35,7 @@ class CartViewModel: ViewModel() {
     }
 
     private fun calcTotalCartPrice() {
-        mutableTotalPrice.value = mutableCart.value?.sumBy { it?.item?.getTotalPrice()?: 0 }
+        mutableTotalPrice.value = mutableCart.value?.sumOf { it?.item?.getTotalPrice()?: 0 }
     }
 
     fun subscribeCart(): LiveData<List<CartItem?>> {
@@ -162,7 +165,7 @@ class CartViewModel: ViewModel() {
     }
 
     private fun updateCartItemsCount() {
-        mutableCartItemsCount.value = mutableCart.value?.sumBy { it?.item?.count!!}
+        mutableCartItemsCount.value = mutableCart.value?.sumOf { it?.item?.count!!}
     }
 
     fun clearCart() {

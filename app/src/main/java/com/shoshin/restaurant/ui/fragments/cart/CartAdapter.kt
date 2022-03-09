@@ -4,8 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.shoshin.restaurant.R
-import com.shoshin.restaurant.entities.CartItem
-import com.shoshin.restaurant.main.app.App
+import com.shoshin.data.db.entities.cart.CartItem
 
 class CartAdapter(
     private val onChangeCartItemCount: CartItemHolder.OnCartItemChangeCount,
@@ -17,7 +16,7 @@ class CartAdapter(
 
     fun setupItems(cartItems: List<CartItem?>) {
         items = cartItems
-        notifyDataSetChanged()
+        notifyItemRangeInserted(0, cartItems.size)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartItemHolder {

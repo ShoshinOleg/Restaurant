@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        tools:text="Олег"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="@dimen/padding"
+    />
+
+    <TextView
+        android:id="@+id/phoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        tools:text="+79155694257"
+        app:layout_constraintTop_toBottomOf="@+id/name"
+        android:paddingHorizontal="@dimen/padding"
+        />
+
+    <TextView
+        android:id="@+id/countOrdersLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:paddingTop="@dimen/smallPadding"
+        android:text="@string/orders_created"
+        android:paddingHorizontal="@dimen/padding"
+        app:layout_constraintTop_toBottomOf="@+id/phoneNumber"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+    <TextView
+        android:id="@+id/countOrders"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/countOrdersLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/countOrdersLabel"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        tools:text = "20"
+        android:paddingHorizontal="@dimen/padding"
+
+        />
+    <View
+        android:id="@+id/separator1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="@dimen/padding"
+        app:layout_constraintTop_toBottomOf="@+id/countOrdersLabel"
+        android:background="@color/darkGray"
+        />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/locationsSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/separator1"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginVertical="@dimen/padding"
+        >
+
+        <ImageView
+            android:id="@+id/locationsImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_location"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:paddingHorizontal="@dimen/padding"
+            app:tint="@color/darkGreen"
+            android:contentDescription="@string/image_description_locations" />
+
+        <TextView
+            android:id="@+id/locationsLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="@string/my_locations"
+            app:layout_constraintStart_toEndOf="@id/locationsImage"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/padding"
+            android:src="@drawable/ic_right_arrow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:contentDescription="@string/right_arrow_description" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <View
+        android:id="@+id/bottomLocationsSeparator"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:paddingTop="16dp"
+        android:layout_marginHorizontal="@dimen/padding"
+        app:layout_constraintTop_toBottomOf="@+id/locationsSection"
+        android:background="@color/darkGray"
+        />
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/settingsSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/bottomLocationsSeparator"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginVertical="@dimen/padding"
+        >
+
+        <ImageView
+            android:id="@+id/settingsImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_settings"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:paddingHorizontal="@dimen/padding"
+            app:tint="@color/darkGreen"
+            android:contentDescription="@string/image_descriptions_settings" />
+
+        <TextView
+            android:id="@+id/settingsLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="@string/settings"
+            app:layout_constraintStart_toEndOf="@id/settingsImage"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/padding"
+            android:src="@drawable/ic_right_arrow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:contentDescription="@string/right_arrow_description"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <View
+        android:id="@+id/bottomSettingsSeparator"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:paddingTop="16dp"
+        android:layout_marginHorizontal="@dimen/padding"
+        app:layout_constraintTop_toBottomOf="@+id/settingsSection"
+        android:background="@color/darkGray"
+        />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/logoutSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/bottomSettingsSeparator"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginVertical="@dimen/padding"
+        >
+
+        <ImageView
+            android:id="@+id/logoutImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_logout"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:paddingHorizontal="@dimen/padding"
+            app:tint="@color/darkGreen"
+            android:contentDescription="@string/image_description_logout" />
+
+        <TextView
+            android:id="@+id/logoutLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="@string/logout"
+            app:layout_constraintStart_toEndOf="@id/logoutImage"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/padding"
+            android:src="@drawable/ic_right_arrow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:contentDescription="@string/right_arrow_description"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/bottomLogoutSeparator"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:paddingTop="16dp"
+        android:layout_marginHorizontal="@dimen/padding"
+        app:layout_constraintTop_toBottomOf="@+id/logoutSection"
+        android:background="@color/darkGray"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.shoshin.restaurant.R
 import com.shoshin.restaurant.databinding.CartItemHolderBinding
-import com.shoshin.restaurant.entities.CartItem
+import com.shoshin.data.db.entities.cart.CartItem
 import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 
@@ -61,7 +61,7 @@ class CartItemHolder(
 
     private fun showPrice() {
         cartItem?.item?.let {
-            binding.price.text = "${it.getTotalPrice()} ₽"
+            binding.price.text = itemView.context.getString(R.string.rubles_price, it.getTotalPrice())
         }
     }
 
