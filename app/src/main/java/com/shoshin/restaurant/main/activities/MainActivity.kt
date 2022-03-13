@@ -39,7 +39,8 @@ class MainActivity : AppCompatActivity() {
         val topLevelDestinations = setOf(
             R.id.profile,
             R.id.menu,
-            R.id.cart
+            R.id.cart,
+            R.id.loginEnterPhone
         )
         navController = findNavController(R.id.fragmentContainer)
         appBarConfiguration = AppBarConfiguration(topLevelDestinations)
@@ -54,29 +55,16 @@ class MainActivity : AppCompatActivity() {
                     } else {
                         navController.navigate(R.id.profile)
                     }
+                    R.id.orders ->
+                        if(Firebase.auth.currentUser == null) {
+                            navController.navigate(R.id.loginEnterPhone)
+                        } else {
+                            navController.navigate(R.id.orders)
+                        }
                 else -> navController.navigate(item.itemId)
             }
             true
         }
-
-        //        binding.bottomNavigationView.setOnItemSelectedListener {  item ->
-        //            when(item.itemId) {
-        //                R.id.profile ->
-        //                    if(Firebase.auth.currentUser == null) {
-        //                        navController.navigate(R.id.loginEnterPhone)
-        //                    } else {
-        //                        navController.navigate(R.id.profile)
-        //                    }
-        //                R.id.orders ->
-        //                    if(Firebase.auth.currentUser == null) {
-        //                        navController.navigate(R.id.loginEnterPhone)
-        //                    } else {
-        //                        navController.navigate(R.id.orders)
-        //                    }
-        //                else -> navController.navigate(item.itemId)
-        //            }
-        //            true
-        //        }
 
         cartViewModel = ViewModelProvider(this).get(CartViewModel::class.java)
         cartViewModel?.subscribeCartItemsCount()?.observe(this, {

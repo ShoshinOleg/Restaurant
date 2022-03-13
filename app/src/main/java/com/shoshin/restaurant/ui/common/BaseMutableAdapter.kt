@@ -11,7 +11,8 @@ abstract class BaseMutableAdapter<E, T : BaseViewHolder<E>> :
 
     fun setupItems(data: MutableList<E>) {
         items = data
-        notifyItemRangeInserted(0, data.size)
+        notifyDataSetChanged()
+//        notifyItemRangeInserted(0, data.size)
     }
 
     fun setItem(item: E) {

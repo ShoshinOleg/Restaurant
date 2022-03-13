@@ -9,11 +9,14 @@ import com.shoshin.data.db.entities.categories.CategoryDao
 import com.shoshin.data.db.entities.categories.CategoryDbo
 import com.shoshin.data.db.entities.cart.MapOptionsConverter
 import com.shoshin.data.db.entities.categories.HashMapStringStringConverter
+import com.shoshin.data.db.entities.locations.LocationDao
+import com.shoshin.data.db.entities.locations.LocationDbo
 
 @Database(
     entities = [
         CartItem1Dbo::class,
-        CategoryDbo::class
+        CategoryDbo::class,
+        LocationDbo::class
     ],
     version = 1
 )
@@ -24,4 +27,5 @@ import com.shoshin.data.db.entities.categories.HashMapStringStringConverter
 abstract class AppDatabase: RoomDatabase() {
     abstract fun categoryDao(): CategoryDao
     abstract fun cartDao(): CartDao
+    abstract fun locationDbo(): LocationDao
 }

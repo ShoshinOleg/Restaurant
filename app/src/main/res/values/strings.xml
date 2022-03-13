@@ -18,4 +18,18 @@
     <string name="next">Далее</string>
     <string name="input_your_phone_number">Введите свой номер телефона</string>
     <string name="phone">Телефон</string>
+    <string name="do_order">Оформить заказ</string>
+    <string name="orders">Заказы</string>
+    <string name="edit">Редактировать</string>
+    <string name="remove">Удалить</string>
+    <string name="street">Улица</string>
+    <string name="house">Дом</string>
+    <string name="flat">Квартира</string>
+    <string name="entrance">Подъезд</string>
+    <string name="doorphone">Домофон</string>
+    <string name="level">Этаж</string>
+    <string name="comment">Комментарий</string>
+    <string name="add_address">Добавить адрес</string>
+    <string name="cart_is_empty">Корзина пуста</string>
+    <string name="menu">Меню</string>
 </resources>

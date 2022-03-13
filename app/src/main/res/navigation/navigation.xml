@@ -46,7 +46,12 @@
         android:name="com.shoshin.restaurant.ui.fragments.profile.ProfileFragment"
         android:label="Профиль"
         tools:layout="@layout/profile_fragment"
-        />
+        >
+        <action
+            android:id="@+id/toLocations"
+            app:destination="@+id/locations"
+            />
+    </fragment>
 
     <fragment
         android:id="@+id/loginEnterPhone"
@@ -71,6 +76,13 @@
             android:name="verificationId"
             app:argType="string" />
 
+    </fragment>
+
+    <fragment
+        android:id="@+id/locations"
+        android:name="com.shoshin.restaurant.ui.fragments.locations.LocationsFragment"
+        android:label="Адреса"
+        tools:layout="@layout/locations_fragment">
     </fragment>
 
 </navigation>

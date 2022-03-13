@@ -1,6 +1,7 @@
 package com.shoshin.data.remote.main
 
 import com.shoshin.data.interfaces.services.remote.ICategoryRemoteService
+import com.shoshin.data.interfaces.services.remote.ILocationRemoteService
 import com.shoshin.data.interfaces.services.remote.IUserRemoteService
 import com.shoshin.domain_abstract.entities.dish.Dish
 import com.shoshin.domain_abstract.repositories.IUserTokenRepository
@@ -14,7 +15,8 @@ import java.util.concurrent.TimeUnit
 
 interface RestaurantService:
     ICategoryRemoteService,
-    IUserRemoteService
+    IUserRemoteService,
+    ILocationRemoteService
 {
     //Dishes
     @GET("${Constants.CATEGORIES_URL}/{category_id}/dishes")

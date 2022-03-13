@@ -10,6 +10,7 @@
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="my_white">#86F48B</color>
     <color name="green">#00FF00</color>
     <color name="darkGreen">#01AE01</color>
     <color name="blue">#1E39D3</color>
@@ -20,7 +21,14 @@
     <color name="highlightColor">#96D3FB</color>
     <color name="red">#FF0000</color>
 
+    <color name="backgroundNight">#232323</color>
+
     <color name="splash_background">#FFFFFF</color>
     <color name="splash_toolbar_background">#FFFFFF</color>
     //81CDFF
+
+    <color name="buttonGreenNightBackground">#261D6821</color>
+    <color name="backgroundBottomNavigationMenu">#C8C8C8</color>
+
+
 </resources>

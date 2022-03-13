@@ -98,14 +98,13 @@
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground"
             android:background="@drawable/ripple_effect"
+            app:cardBackgroundColor="?attr/background"
             >
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/doOrder"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/button_green"
-                android:foreground="?android:attr/selectableItemBackground"
-
                 >
                 <TextView
                     android:id="@+id/doOrderText"
@@ -116,7 +115,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:textSize="16sp"
-                    android:text="Оформить заказ"
+                    android:text="@string/do_order"
                     />
                 <TextView
                     android:id="@+id/price"
@@ -127,7 +126,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:textColor="@color/darkGreen"
                     android:textSize="16sp"
-                    android:text="2582 ₽"
+                    tools:text="2582 ₽"
                     />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
@@ -165,7 +164,7 @@
                 android:gravity="center"
                 android:textColor="@color/black"
                 android:textSize="18sp"
-                android:text="Корзина пуста"
+                android:text="@string/cart_is_empty"
                 />
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/toMenu"
@@ -183,7 +182,7 @@
                 android:background="@drawable/button_green"
                 android:textColor="#53AF4B"
 
-                android:text="Меню" />
+                android:text="@string/menu" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -21,5 +21,9 @@ class ProfileFragment: Fragment(R.layout.profile_fragment) {
             Firebase.auth.signOut()
             findNavController().navigate(R.id.loginEnterPhone)
         }
+
+        binding.locationsSection.setOnClickListener {
+            findNavController().navigate(ProfileFragmentDirections.toLocations())
+        }
     }
 }
