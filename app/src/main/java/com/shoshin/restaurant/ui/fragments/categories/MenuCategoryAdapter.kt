@@ -3,7 +3,7 @@ package com.shoshin.restaurant.ui.fragments.categories
 import android.view.ViewGroup
 import com.shoshin.domain_abstract.entities.category.Category
 import com.shoshin.restaurant.R
-import com.shoshin.restaurant.ui.common.BaseAdapter
+import com.shoshin.restaurant.ui.common.recycler.recycler.BaseAdapter
 
 class MenuCategoryAdapter(
     private val onCategoryClickListener: MenuCategoryHolder.OnCategoryClickListener

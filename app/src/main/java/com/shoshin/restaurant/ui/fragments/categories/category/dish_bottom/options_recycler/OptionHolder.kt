@@ -5,7 +5,7 @@ import androidx.core.content.ContextCompat
 import com.shoshin.domain_abstract.entities.dish.DishOption
 import com.shoshin.restaurant.R
 import com.shoshin.restaurant.databinding.DishOptionHolderBinding
-import com.shoshin.restaurant.ui.common.BaseViewHolder
+import com.shoshin.restaurant.ui.common.recycler.BaseViewHolder
 
 class OptionHolder(
     itemView: View,
@@ -22,7 +22,6 @@ class OptionHolder(
             onClickListener.onOptionClick(item!!)
         }
     }
-
 
     override fun bind(item: DishOption) {
         super.bind(item)
@@ -47,6 +46,4 @@ class OptionHolder(
             }
         }
     }
-
-
 }

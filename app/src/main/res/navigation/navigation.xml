@@ -35,10 +35,17 @@
         tools:layout="@layout/cart_fragment"
         >
         <action
+            android:id="@+id/toCreateOrder"
+            app:destination="@+id/orderCreate"
+            />
+        <action
             android:id="@+id/toMenu"
             app:destination="@+id/menu"
             />
-
+        <action
+            android:id="@+id/toLogin"
+            app:destination="@+id/loginEnterPhone"
+            />
     </fragment>
 
     <fragment
@@ -84,5 +91,28 @@
         android:label="Адреса"
         tools:layout="@layout/locations_fragment">
     </fragment>
+
+    <fragment
+        android:id="@+id/orderCreate"
+        android:name="com.shoshin.restaurant.ui.fragments.order_create.OrderCreateFragment"
+        android:label="Оформление заказа"
+        tools:layout="@layout/order_create_fragment"
+        >
+        <action
+            android:id="@+id/toOrders"
+            app:destination="@+id/orders"
+            />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/orders"
+        android:name="com.shoshin.restaurant.ui.fragments.orders.OrdersFragment"
+        android:label="Заказы"
+        tools:layout="@layout/orders_fragment"
+        >
+
+    </fragment>
+
 
 </navigation>

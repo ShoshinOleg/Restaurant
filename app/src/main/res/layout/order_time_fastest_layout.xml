@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="@dimen/smallPadding"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mainInfoConstraint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/ic_timer"
+            app:tint="@color/darkGreen"
+            />
+
+        <TextView
+            android:id="@+id/timeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/smallPadding"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/image"
+            android:text="Сегодня до "
+            />
+        <TextView
+            android:id="@+id/fastestTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/timeLabel"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            tools:text="17:02"
+            />
+        <TextView
+            android:id="@+id/timeSubtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/smallPadding"
+            app:layout_constraintTop_toBottomOf="@+id/timeLabel"
+            app:layout_constraintStart_toEndOf="@+id/image"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Завершите оформление заказа ниже. При подтверждении мы сообщим вам точное время"
+            />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/smallPadding"
+            app:layout_constraintTop_toBottomOf="@+id/timeLabel"
+            app:layout_constraintStart_toEndOf="@+id/image"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Завершите оформление заказа ниже. При подтверждении мы сообщим вам точное время"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/closeCafeConstraint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"
+        >
+        <TextView
+            android:id="@+id/closeCafeText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:paddingHorizontal="@dimen/smallPadding"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Сейчас ресторан закрыт. Вы можете указать определеную дату и время"
+            android:textSize="16sp"
+            android:textColor="@color/red"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

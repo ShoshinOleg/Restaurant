@@ -5,7 +5,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.shoshin.domain_abstract.entities.dish.Dish
 import com.shoshin.restaurant.R
 import com.shoshin.restaurant.databinding.DishHolderBinding
-import com.shoshin.restaurant.ui.common.BaseViewHolder
+import com.shoshin.restaurant.ui.common.recycler.BaseViewHolder
 import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 

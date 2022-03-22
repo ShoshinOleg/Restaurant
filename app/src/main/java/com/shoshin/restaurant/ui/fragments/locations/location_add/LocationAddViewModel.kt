@@ -8,9 +8,6 @@ import com.shoshin.domain_abstract.common.Reaction
 import com.shoshin.domain_abstract.entities.locations.Location
 import com.shoshin.domain_abstract.usecases.locations.ISetLocationUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

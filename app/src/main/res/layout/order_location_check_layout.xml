@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:indeterminateTint="@color/darkGreen"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/emptyInfoBlock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/progress"
+        android:padding="@dimen/smallPadding"
+        android:visibility="gone"
+        >
+        <ImageView
+            android:id="@+id/infoImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/ic_info"
+            app:tint="@color/light_red"
+            />
+
+        <TextView
+            android:id="@+id/emptyLocationListInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/smallPadding"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/infoImage"
+
+            android:text="У вас пока нет сохраненных адресов"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:gravity="center"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/locationRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:nestedScrollingEnabled="false"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+
+        app:layout_constraintTop_toBottomOf="@+id/emptyInfoBlock"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingHorizontal="@dimen/padding"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/addLocation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintTop_toBottomOf="@+id/locationRecycler"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        android:layout_marginTop="@dimen/smallPadding"
+        android:layout_marginHorizontal="@dimen/padding"
+        android:background="@drawable/button_green"
+        android:textColor="#53AF4B"
+
+        android:text="Добавить адрес" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

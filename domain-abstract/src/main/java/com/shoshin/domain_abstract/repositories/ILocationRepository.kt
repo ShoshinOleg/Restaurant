@@ -7,4 +7,5 @@ import kotlinx.coroutines.flow.Flow
 interface ILocationRepository {
     suspend fun getLocations(needRemoteDownload: Boolean): Flow<Reaction<List<Location>>>
     suspend fun setLocation(location: Location): Flow<Reaction<Location>>
+    suspend fun removeLocation(location: Location): Flow<Reaction<Location>>
 }

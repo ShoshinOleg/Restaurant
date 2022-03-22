@@ -6,6 +6,7 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.shoshin.domain_abstract.common.Reaction
 import com.shoshin.domain_abstract.entities.locations.Location
@@ -13,7 +14,9 @@ import com.shoshin.restaurant.R
 import com.shoshin.restaurant.databinding.LocationsFragmentBinding
 import com.shoshin.restaurant.ui.fragments.locations.location_add.LocationAddDialogFragment
 import com.shoshin.restaurant.ui.fragments.locations.recycler.LocationAdapter
+import com.shoshin.restaurant.ui.fragments.locations.recycler.LocationHolder
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LocationsFragment: Fragment(R.layout.locations_fragment) {
@@ -26,6 +29,7 @@ class LocationsFragment: Fragment(R.layout.locations_fragment) {
         setupAddLocationButtonClickListener()
         initRecycler()
         subscribeLocations()
+        subscribeRemovedLocation()
         viewModel.getLocations()
         setupSwipeRefreshLayout()
     }
@@ -86,6 +90,22 @@ class LocationsFragment: Fragment(R.layout.locations_fragment) {
         })
     }
 
+    private fun subscribeRemovedLocation() {
+        lifecycleScope.launch {
+            viewModel.removedLocation.collect() { event ->
+                when(event) {
+                    is Reaction.Success -> adapter.removeItem(event.data)
+                    is Reaction.Progress -> event.data?.let { location ->
+                        adapter.setState(location, LocationHolder.LocationState.Progress)
+                    }
+                    is Reaction.Error -> event.data?.let { location ->
+                        adapter.setState(location, LocationHolder.LocationState.Error)
+                    }
+                }
+            }
+        }
+    }
+
     private fun onProgressEvent(event: Reaction.Progress<List<Location>>) {
         event.data?.let { locations->
             adapter.setupItems(locations as MutableList)
@@ -103,7 +123,7 @@ class LocationsFragment: Fragment(R.layout.locations_fragment) {
 
     private fun onEditLocation(location: Location) {}
 
-    private fun onDeleteLocation(location: Location) {}
+    private fun onDeleteLocation(location: Location) = viewModel.removeLocation(location)
 }
 
 //class LocationsFragment

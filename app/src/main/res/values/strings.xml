@@ -32,4 +32,5 @@
     <string name="add_address">Добавить адрес</string>
     <string name="cart_is_empty">Корзина пуста</string>
     <string name="menu">Меню</string>
+    <string name="cd_right_arrow">Стрелка вправо</string>
 </resources>

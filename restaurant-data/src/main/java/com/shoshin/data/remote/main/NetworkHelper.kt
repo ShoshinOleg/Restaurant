@@ -2,9 +2,8 @@ package com.shoshin.data.remote.main
 
 import android.util.Log
 import com.google.gson.Gson
-import com.shoshin.domain_abstract.common.ErrorResponse
+import com.shoshin.domain_abstract.common.ErrorInfo
 import com.shoshin.domain_abstract.common.Reaction
-import com.shoshin.domain_abstract.common.StatusException
 import retrofit2.HttpException
 
 class NetworkHelper {
@@ -15,11 +14,11 @@ class NetworkHelper {
             } catch (throwable: Throwable) {
                 when(throwable) {
                     is HttpException -> {
-//                        val code = throwable.code()
-                        val errorResponse = convertErrorBody(throwable)
-                        Reaction.Error(exception = errorResponse)
+                        val errorInfo = convertErrorBody(throwable)
+                        Reaction.Error(errorInfo = errorInfo)
                     }
                     else -> {
+                        Log.e("errorBody", "${throwable.message}")
                         Log.e("throwable=", "throwable=$throwable")
                         Reaction.Error(null)
                     }
@@ -27,10 +26,10 @@ class NetworkHelper {
             }
         }
 
-        private fun convertErrorBody(throwable: HttpException): StatusException? {
+        private fun convertErrorBody(throwable: HttpException): ErrorInfo? {
             return try {
                 throwable.response()?.errorBody()?.string()?.let {
-                    Gson().getAdapter(StatusException::class.java).fromJson(it)
+                    Gson().getAdapter(ErrorInfo::class.java).fromJson(it)
                 }
             } catch (exception: Exception) {
                 null

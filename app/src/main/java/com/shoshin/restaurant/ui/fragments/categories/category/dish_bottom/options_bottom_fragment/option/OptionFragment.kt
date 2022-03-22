@@ -18,7 +18,7 @@ class OptionFragment:
 {
     private val binding by viewBinding(OptionFragmentBinding::bind)
     private var option: DishOption by argument()
-    private var adapter: VariantAdapter? = null
+    private val adapter: VariantAdapter by lazy { VariantAdapter(option.isMultiCheck) }
 
     companion object {
         val TAG = OptionFragment::class.java.simpleName
@@ -30,14 +30,13 @@ class OptionFragment:
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        adapter = VariantAdapter(option.isMultiCheck)
         binding.recyclerView.adapter = adapter
         option.variants?.let {
             val list = mutableListOf<DishOptionVariant>()
             for(key in it.keys.sorted()) {
                 list.add(it[key]!!)
             }
-            adapter?.setVariants(list)
+            adapter.setVariants(list)
         }
     }
 

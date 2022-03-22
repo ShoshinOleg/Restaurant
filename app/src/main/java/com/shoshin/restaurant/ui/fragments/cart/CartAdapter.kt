@@ -1,37 +1,26 @@
 package com.shoshin.restaurant.ui.fragments.cart
 
-import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import com.shoshin.domain_abstract.entities.cart.CartItem1
 import com.shoshin.restaurant.R
-import com.shoshin.data.db.entities.cart.CartItem
+import com.shoshin.restaurant.ui.common.recycler.mutable_recycler.BaseMutableAdapter
 
 class CartAdapter(
-    private val onChangeCartItemCount: CartItemHolder.OnCartItemChangeCount,
-    private val onRemoveCartItem: CartItemHolder.OnRemoveCartItem
-):
-    RecyclerView.Adapter<CartItemHolder>()
-{
-    private var items: List<CartItem?>? = null
+    private var increaser: (cartItem: CartItem1) -> Unit = {},
+    private var decreaser: (cartItem: CartItem1) -> Unit = {}
+): BaseMutableAdapter<CartItem1, CartItemHolder>() {
 
-    fun setupItems(cartItems: List<CartItem?>) {
-        items = cartItems
-        notifyItemRangeInserted(0, cartItems.size)
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        CartItemHolder(
+            R.layout.cart_item_holder.makeView(parent), increaser, ::adapterDecreaser
+        )
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartItemHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater.inflate(R.layout.cart_item_holder, parent, false)
-        return CartItemHolder(view, onRemoveCartItem, onChangeCartItemCount)
-    }
+    override fun same(it1: CartItem1, it2: CartItem1): Boolean = it1.id == it2.id
 
-    override fun onBindViewHolder(holder: CartItemHolder, position: Int) {
-        items!![position]?.let {
-            holder.bind(items!![position]!!)
+    private fun adapterDecreaser(cartItem: CartItem1) {
+        if(cartItem.dish.count == 0) {
+            removeItem(cartItem)
         }
-    }
-
-    override fun getItemCount(): Int {
-        return items?.size ?: 0
+        decreaser(cartItem)
     }
 }

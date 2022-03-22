@@ -4,7 +4,7 @@ import android.view.View
 import com.shoshin.domain_abstract.entities.category.Category
 import com.shoshin.restaurant.R
 import com.shoshin.restaurant.databinding.MenuCategoryHolderBinding
-import com.shoshin.restaurant.ui.common.BaseViewHolder
+import com.shoshin.restaurant.ui.common.recycler.BaseViewHolder
 import com.squareup.picasso.Picasso
 
 class MenuCategoryHolder (

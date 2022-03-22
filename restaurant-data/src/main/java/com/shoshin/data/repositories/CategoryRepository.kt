@@ -61,7 +61,7 @@ class CategoryRepository @Inject constructor(
                 val remoteCategories = categoryDomainDataMapper.mapFrom(result.data)
                 emit(Reaction.Success(remoteCategories))
             }
-            is Reaction.Error -> emit(Reaction.Error(result.message, result.exception))
+            is Reaction.Error -> emit(Reaction.Error(result.message, result.errorInfo))
             else -> {}
         }
     }

@@ -4,39 +4,37 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import com.shoshin.domain_abstract.entities.cart.CartItem1
 import com.shoshin.restaurant.R
 import com.shoshin.restaurant.databinding.CartFragmentBinding
-import com.shoshin.data.db.entities.cart.CartItem
+import dagger.hilt.android.AndroidEntryPoint
 
-class CartFragment:
-    Fragment(R.layout.cart_fragment),
-    CartItemHolder.OnCartItemChangeCount,
-    CartItemHolder.OnRemoveCartItem
-{
-    private val adapter = CartAdapter(this, this)
+@AndroidEntryPoint
+class CartFragment: Fragment(R.layout.cart_fragment) {
+    private val adapter by lazy { CartAdapter(::onCartItemIncrease, ::onCartItemDecrease) }
     private val binding by viewBinding(CartFragmentBinding::bind)
     private var isEmpty = true
-    private var cartViewModel: CartViewModel? = null
+    private val cartViewModel: CartViewModel1 by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        cartViewModel = ViewModelProvider(requireActivity()).get(CartViewModel::class.java)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        setupDoOrderClickListener()
+        setupDoOrderClickListener()
         setupToMenuClickListener()
         initRecycler()
-        subscribeCart()
         subscribeTotalPrice()
         subscribeCartItemsCount()
     }
@@ -49,19 +47,16 @@ class CartFragment:
     }
 
     private fun initRecycler() {
-        binding.recyclerView.layoutManager = LinearLayoutManager(this.context)
         binding.recyclerView.adapter = adapter
+        cartViewModel.cartItems.observe(viewLifecycleOwner, {
+            Log.e("cartItems", "cartItems=$it")
+            adapter.setupItems(it as MutableList)
+        })
+        cartViewModel.getItems()
     }
 
-    override fun onResume() {
-        Log.i("CartFragment", "onResume")
-        super.onResume()
-        adapter.notifyDataSetChanged()
-        checkCart()
-    }
-    private fun checkCart() {
-        cartViewModel?.subscribeCartItemsCount()?.observe(viewLifecycleOwner, { count ->
-            Log.e("count=", "$count")
+    private fun subscribeCartItemsCount() {
+        cartViewModel.cartItemsCount.observe(viewLifecycleOwner, { count ->
             if(count == 0) {
                 switchToEmptyCart()
                 isEmpty = true
@@ -82,30 +77,9 @@ class CartFragment:
         )
     }
 
-    private fun subscribeCart() {
-        cartViewModel?.subscribeCart()?.observe(viewLifecycleOwner, {
-            adapter.setupItems(it)
-        })
-    }
-
     private fun subscribeTotalPrice() {
-        cartViewModel?.subscribeTotalPrice()?.observe(viewLifecycleOwner, {
+        cartViewModel.cartPrice.observe(viewLifecycleOwner, {
             binding.price.text = context?.getString(R.string.rubles_price, it)
-        })
-    }
-
-    private fun subscribeCartItemsCount() {
-        cartViewModel?.subscribeCartItemsCount()?.observe(viewLifecycleOwner, { count ->
-            Log.e("count=", "$count")
-            if(count == 0) {
-                switchToEmptyCart()
-                isEmpty = true
-            } else {
-                if(isEmpty) {
-                    switchToNormalCart()
-                    isEmpty = false
-                }
-            }
         })
     }
 
@@ -119,11 +93,39 @@ class CartFragment:
         binding.emptyCartBlock.visibility = View.VISIBLE
     }
 
-    override fun onItemRemove(cartItem: CartItem) {
-        cartViewModel?.removeItem(cartItem)
+    private fun onCartItemIncrease(cartItem: CartItem1) {
+        cartViewModel.setCartItem(cartItem)
+//        cartViewModel.increaseCartItem(cartItem)
+//        cartViewModel.addDish()
     }
 
-    override fun onChangeCount(cartItem: CartItem, count: Int) {
-        cartViewModel?.changeCount(cartItem, count)
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.clearCart -> {
+                cartViewModel.clearCart()
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun onCartItemDecrease(cartItem: CartItem1) {
+        if(cartItem.dish.count != 0) {
+            cartViewModel.setCartItem(cartItem)
+        } else {
+            cartViewModel.removeCartItem(cartItem)
+        }
+    }
+
+    private fun setupDoOrderClickListener() {
+        binding.doOrder.setOnClickListener {
+            if(Firebase.auth.currentUser != null) {
+                val directions = CartFragmentDirections.toCreateOrder()
+                findNavController().navigate(directions)
+            } else {
+                val directions = CartFragmentDirections.toLogin()
+                findNavController().navigate(directions)
+            }
+        }
     }
 }

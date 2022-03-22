@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="@dimen/smallPadding"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/addressLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="16sp"
+        android:text="Адрес "
+        />
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/addressLabel"
+        app:layout_constraintTop_toTopOf="@id/addressLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/addressLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="right"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        tools:text = "ул. Привокзальная, д. 1, кв. 170, подъезд 1"
+        />
+    <TextView
+        android:id="@+id/paymentMethodLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/smallPadding"
+        app:layout_constraintTop_toBottomOf="@+id/addressLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="16sp"
+        android:text="Способ оплаты"
+        />
+    <TextView
+        android:id="@+id/paymentMethod"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/paymentMethodLabel"
+        app:layout_constraintTop_toTopOf="@id/paymentMethodLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/paymentMethodLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="right"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        tools:text = "Наличными"
+        />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/deliveryLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/paymentMethodLabel"
+        android:paddingTop="@dimen/smallPadding"
+        >
+        <TextView
+            android:id="@+id/deliveryPriceLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="16sp"
+            android:text="Стоимость доставки"
+            />
+        <TextView
+            android:id="@+id/deliveryPrice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/deliveryPriceLabel"
+            app:layout_constraintTop_toTopOf="@id/deliveryPriceLabel"
+            app:layout_constraintBottom_toBottomOf="@+id/deliveryPriceLabel"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="right"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            tools:text = "Бесплатно"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/totalOrderPriceLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/smallPadding"
+        app:layout_constraintTop_toBottomOf="@+id/deliveryLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="16sp"
+        android:text="Сумма заказа"
+        />
+    <TextView
+        android:id="@+id/totalOrderPrice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/totalOrderPriceLabel"
+        app:layout_constraintTop_toTopOf="@id/totalOrderPriceLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/totalOrderPriceLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="right"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        tools:text = "10650 ₽"
+        />
+
+    <TextView
+        android:id="@+id/totalPriceLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/smallPadding"
+        app:layout_constraintTop_toBottomOf="@+id/totalOrderPriceLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:text="Итого к оплате"
+        />
+    <TextView
+        android:id="@+id/totalPrice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/totalPriceLabel"
+        app:layout_constraintTop_toTopOf="@id/totalPriceLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/totalPriceLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="right"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        tools:text = "10650 ₽"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

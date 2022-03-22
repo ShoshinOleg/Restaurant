@@ -11,7 +11,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/editImage"
+        app:layout_constraintEnd_toStartOf="@id/error"
         android:padding="@dimen/padding"
         android:textSize="16sp"
         android:textColor="@color/black"
@@ -41,4 +41,27 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:tint="@color/black"
         android:contentDescription="@string/remove" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginRight="@dimen/padding"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:indeterminateTint="@color/darkGreen"
+        />
+
+    <ImageView
+        android:id="@+id/error"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginRight="@dimen/smallPadding"
+        android:visibility="gone"
+        android:src="@drawable/ic_error_outline"
+        app:layout_constraintEnd_toStartOf="@+id/editImage"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

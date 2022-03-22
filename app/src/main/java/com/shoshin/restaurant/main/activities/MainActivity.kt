@@ -1,12 +1,12 @@
 package com.shoshin.restaurant.main.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import androidx.lifecycle.ViewModelProvider
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -19,7 +19,7 @@ import com.google.firebase.ktx.Firebase
 import com.nex3z.notificationbadge.NotificationBadge
 import com.shoshin.restaurant.R
 import com.shoshin.restaurant.databinding.ActivityMainBinding
-import com.shoshin.restaurant.ui.fragments.cart.CartViewModel
+import com.shoshin.restaurant.ui.fragments.cart.CartViewModel1
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
     private var badge: NotificationBadge? = null
-    private var cartViewModel: CartViewModel? = null
+    private val cartViewModel: CartViewModel1 by viewModels()
     private var cartItemsCount = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,8 +66,7 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        cartViewModel = ViewModelProvider(this).get(CartViewModel::class.java)
-        cartViewModel?.subscribeCartItemsCount()?.observe(this, {
+        cartViewModel.cartItemsCount.observe(this, {
             Log.e("mainActCountChange", "$it")
             cartItemsCount = it
             invalidateOptionsMenu()

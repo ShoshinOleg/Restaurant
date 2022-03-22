@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mainInfoConstraint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+        <androidx.cardview.widget.CardView
+            android:id="@+id/dateCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/timeCard"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginVertical="@dimen/smallPadding"
+            android:layout_marginStart="@dimen/padding"
+            android:layout_marginEnd="4dp"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="10dp"
+            >
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_margin="@dimen/smallPadding"
+                    tools:text="12.10.2021"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+
+                    android:drawableRight="@drawable/ic_arrow_down"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/timeCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/dateCard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginVertical="@dimen/smallPadding"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="@dimen/padding"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="10dp"
+            >
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+                <TextView
+                    android:id="@+id/tvTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_margin="@dimen/smallPadding"
+                    android:gravity="center"
+                    android:text="10:30"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+
+                    android:drawableRight="@drawable/ic_arrow_down"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/closeCafeConstraint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/mainInfoConstraint"
+        android:visibility="gone"
+
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:paddingVertical="@dimen/smallPadding"
+            android:paddingHorizontal="@dimen/padding"
+            android:text="Ресторан не работает в выбранный день"
+            android:textSize="16sp"
+            android:textColor="@color/red"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,21 +4,18 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.lifecycleScope
 import com.shoshin.domain_abstract.common.Reaction
 import com.shoshin.domain_abstract.entities.locations.Location
 import com.shoshin.restaurant.common.argument
 import com.shoshin.restaurant.common.argumentNullable
 import com.shoshin.restaurant.databinding.LocationAddDialogFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LocationAddDialogFragment: AppCompatDialogFragment() {

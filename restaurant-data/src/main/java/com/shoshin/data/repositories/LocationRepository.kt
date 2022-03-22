@@ -42,15 +42,48 @@ class LocationRepository @Inject constructor(
             when(val reaction = remoteLocationSource.setLocation(locationData)) {
                 is Reaction.Success -> {
                     localLocationSource.insert(reaction.data)
+                    emit(
+                        Reaction.Success(
+                            locationDomainDataMapper.mapFrom(reaction.data)
+                        )
+                    )
+                }
+                is Reaction.Error -> emit(Reaction.Error(reaction.message, reaction.errorInfo))
+                else -> {}
+            }
+        }
+
+    override suspend fun removeLocation(location: Location): Flow<Reaction<Location>> =
+        flow {
+            Log.e("t1", "t1")
+            emit(Reaction.Progress(location))
+            Log.e("t2", "t2")
+
+            val locationData = locationDomainDataMapper.mapTo(location)
+            Log.e("t3", "t3")
+
+            when(val reaction = remoteLocationSource.removeLocation(locationData)) {
+                is Reaction.Success -> {
+                    Log.e("t41", "t41")
+
+                    localLocationSource.delete(location)
+                    Log.e("t42", "t42")
                     val abc = locationDomainDataMapper.mapFrom(reaction.data)
+                    Log.e("t43", "t43")
                     emit(
                         Reaction.Success(
                             abc
                         )
                     )
+                    Log.e("t44", "t44")
                 }
-                is Reaction.Error -> emit(Reaction.Error(reaction.message, reaction.exception))
-                else -> {}
+                is Reaction.Error -> {
+                    Log.e("onErr", "onErr")
+                    emit(Reaction.Error(reaction.message, reaction.errorInfo, data = location))
+                }
+                else -> {
+                    Log.e("t5", "t5")
+                }
             }
         }
 
@@ -71,7 +104,7 @@ class LocationRepository @Inject constructor(
                 val remoteLocations = locationDomainDataMapper.mapFrom(result.data)
                 emit(Reaction.Success(remoteLocations))
             }
-            is Reaction.Error -> emit(Reaction.Error(result.message, result.exception))
+            is Reaction.Error -> emit(Reaction.Error(result.message, result.errorInfo))
             else -> {}
         }
     }

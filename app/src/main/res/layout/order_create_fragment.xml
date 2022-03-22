@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/mainConstraint"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"
+            >
+
+            <com.shoshin.restaurant.ui.common.switcher.Switcher
+                android:id="@+id/deliverySwitcher"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:firstButtonText="Доставка"
+                app:secondButtonText="Самовывоз">
+                    <com.shoshin.restaurant.ui.fragments.order_create.locations_recycler.LocationsCheckableView
+                        android:id="@+id/orderLocationCheckView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:text="sdfsdfsdf"
+                        />
+            </com.shoshin.restaurant.ui.common.switcher.Switcher>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/timeBlock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/deliverySwitcher"
+                >
+                <TextView
+                    android:id="@+id/timeLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Время доставки"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:paddingTop="@dimen/padding"
+                    android:paddingStart="@dimen/padding"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    />
+                <com.shoshin.restaurant.ui.common.switcher.Switcher
+                    android:id="@+id/timeSwitcher"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/timeLabel"
+                    app:firstButtonText="Как можно скорее"
+                    app:secondButtonText="Ко времени"
+                    >
+                    <com.shoshin.restaurant.ui.fragments.order_create.time_views.FastestTimeView
+                        android:id="@+id/fastestTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                    <com.shoshin.restaurant.ui.fragments.order_create.time_views.TimeSelectView
+                        android:id="@+id/timeSelect"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                </com.shoshin.restaurant.ui.common.switcher.Switcher>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/paymentMethodBlock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/timeBlock"
+                >
+                <TextView
+                    android:id="@+id/paymentMethodLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:paddingStart="@dimen/padding"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:text="Итого к оплате"
+                    />
+                <TextView
+                    android:id="@+id/totalPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="@dimen/padding"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/paymentMethodLabel"
+                    app:layout_constraintHorizontal_bias="1"
+
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:text="229 ₽"
+
+                    />
+
+                <RadioGroup
+                    android:id="@+id/paymentMethodRadioGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/totalPrice"
+                    android:paddingStart="@dimen/padding"
+
+                    >
+                    <RadioButton
+                        android:id="@+id/cashPayment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:text="Наличными"
+                        android:buttonTint="@color/darkGreen"
+                        >
+
+                    </RadioButton>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/purchaseChangeConstraint"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="@dimen/smallPadding"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:text="Нужна сдача с"
+                            android:textSize="16sp"
+                            />
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/changeCard"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:layout_marginEnd="@dimen/smallPadding"
+                            android:layout_marginVertical="@dimen/smallPadding"
+                            app:cardElevation="4dp"
+                            app:cardCornerRadius="10dp"
+                            >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/smallPadding"
+                                android:text="500"
+                                android:drawableRight="@drawable/ic_arrow_down"
+                                android:textColor="@color/black"
+                                android:drawableTint="@color/black"
+                                />
+
+                        </androidx.cardview.widget.CardView>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <RadioButton
+                        android:id="@+id/receiptCardPayment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:text="Картой при получении"
+                        android:buttonTint="@color/darkGreen"
+                        />
+                </RadioGroup>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <include
+                android:id="@+id/totalOrderLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/paymentMethodBlock"
+                layout="@layout/order_total_layout"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/createOrder"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+
+                app:layout_constraintTop_toBottomOf="@+id/totalOrderLayout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+
+                android:layout_marginTop="@dimen/smallPadding"
+                android:layout_marginBottom="@dimen/padding"
+                android:layout_marginHorizontal="@dimen/padding"
+                android:background="@drawable/button_green"
+                android:textColor="#53AF4B"
+
+                android:text="Оформить заказ" />
+
+            <ProgressBar
+                android:id="@+id/creationProgress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@+id/createOrder"
+                app:layout_constraintEnd_toEndOf="@+id/createOrder"
+                app:layout_constraintBottom_toBottomOf="@+id/createOrder"
+                android:indeterminateTint="@color/darkGreen"
+                android:elevation="7dp"
+                android:visibility="gone"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

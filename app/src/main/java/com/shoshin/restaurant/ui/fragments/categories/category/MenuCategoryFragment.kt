@@ -6,7 +6,6 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.shoshin.domain_abstract.common.Reaction
@@ -15,7 +14,7 @@ import com.shoshin.domain_abstract.entities.dish.Dish
 import com.shoshin.restaurant.R
 import com.shoshin.restaurant.common.argument
 import com.shoshin.restaurant.databinding.MenuCategoryFragmentBinding
-import com.shoshin.restaurant.ui.fragments.cart.CartViewModel
+import com.shoshin.restaurant.ui.fragments.cart.CartViewModel1
 import com.shoshin.restaurant.ui.fragments.categories.category.dish_bottom.DishBottomDialogFragment
 import com.shoshin.restaurant.ui.fragments.categories.category.dishes_recycler.DishAdapter
 import com.shoshin.restaurant.ui.fragments.categories.category.dishes_recycler.DishHolder
@@ -30,13 +29,8 @@ class MenuCategoryFragment:
     private val binding by viewBinding(MenuCategoryFragmentBinding::bind)
     private var category: Category by argument()
     private val viewModel: MenuCategoryViewModel by viewModels()
-    private lateinit var adapter: DishAdapter
-    private var cartViewModel: CartViewModel?  = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        cartViewModel = ViewModelProvider(requireActivity()).get(CartViewModel::class.java)
-    }
+    private val adapter by lazy { DishAdapter(this, this) }
+    private val cartViewModel: CartViewModel1 by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -48,7 +42,6 @@ class MenuCategoryFragment:
     private fun initRecycler() {
         val numberOfColumns = 2
         binding.recyclerView.layoutManager = GridLayoutManager(this.context, numberOfColumns)
-        adapter = DishAdapter(this, this)
         binding.recyclerView.adapter = adapter
     }
 
@@ -99,7 +92,7 @@ class MenuCategoryFragment:
         if(dish.options != null && dish.options!!.size > 0) {
             openBottomDialogFragment(dish)
         } else {
-            cartViewModel?.addItem(dish.clone())
+            cartViewModel.addDish(dish.clone())
             Toast.makeText(context?.applicationContext, "Блюдо добавлено в корзину", Toast.LENGTH_SHORT).show()
         }
     }

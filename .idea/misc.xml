@@ -6,13 +6,16 @@
         <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/drawable-night/button_green.xml" value="0.37592592592592594" />
         <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/drawable-night/splash_screen.xml" value="0.37592592592592594" />
         <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/drawable-v24/ic_add.xml" value="0.3675925925925926" />
+        <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/drawable-v24/ic_arrow_down.xml" value="0.25" />
         <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/drawable-v24/ic_edit.xml" value="0.37592592592592594" />
+        <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/drawable-v24/ic_info.xml" value="0.14270833333333333" />
         <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.382051282051282" />
         <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/drawable-v24/ic_logout.xml" value="0.37962962962962965" />
         <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/drawable-v24/ic_menu.xml" value="0.3675925925925926" />
         <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/drawable-v24/ic_orders.xml" value="0.37592592592592594" />
         <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/drawable-v24/ic_person.xml" value="0.37962962962962965" />
         <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/drawable-v24/ic_settings.xml" value="0.37962962962962965" />
+        <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/drawable-v24/ic_timer.xml" value="0.14270833333333333" />
         <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/drawable/bottom_sheet_background.xml" value="0.382051282051282" />
         <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/drawable/button_green.xml" value="0.382051282051282" />
         <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/drawable/ic_cart.xml" value="0.382051282051282" />
@@ -35,7 +38,8 @@
         <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/layout/ic_close.xml" value="0.20885416666666667" />
         <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/layout/ic_food.xml" value="0.25679347826086957" />
         <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/layout/location_add_dialog_fragment.xml" value="0.33" />
-        <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/layout/location_item_holder.xml" value="0.20742753623188406" />
+        <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/layout/location_checked_holder.xml" value="0.18085106382978725" />
+        <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/layout/location_item_holder.xml" value="0.5" />
         <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/layout/locations_fragment.xml" value="0.20742753623188406" />
         <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/layout/login_enter_code_fragment.xml" value="0.21195652173913043" />
         <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/layout/login_enter_number_phone_fragment.xml" value="0.44499381953028433" />
@@ -47,7 +51,17 @@
         <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/layout/menu_item_option_variant_holder.xml" value="0.25679347826086957" />
         <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/layout/option_fragment.xml" value="0.25679347826086957" />
         <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/layout/options_bottom_fragment.xml" value="0.25679347826086957" />
+        <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/layout/order_create_fragment.xml" value="0.25" />
+        <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/layout/order_holder.xml" value="0.18085106382978725" />
+        <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/layout/order_location_check_layout.xml" value="0.22" />
+        <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/layout/order_time_fastest_layout.xml" value="0.25" />
+        <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/layout/order_total_layout.xml" value="0.18085106382978725" />
+        <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/layout/orders_fragment.xml" value="0.18085106382978725" />
         <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/layout/profile_fragment.xml" value="0.21195652173913043" />
+        <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/layout/switcher.xml" value="0.18085106382978725" />
+        <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/layout/time_choose_layout.xml" value="0.18085106382978725" />
+        <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/layout/time_holder.xml" value="0.18085106382978725" />
+        <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/layout/time_picker_fragment.xml" value="0.18085106382978725" />
         <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.371875" />
         <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/menu/cart_menu.xml" value="0.371875" />
         <entry key="..\:/Users/79155/AndroidStudioProjects/Restaurant/app/src/main/res/menu/main_activity_menu.xml" value="0.371875" />

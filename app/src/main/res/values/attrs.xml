@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TwoButtonsSwitcher">
+        <attr name="firstText" format="string"/>
+        <attr name="secondText" format="string"/>
+    </declare-styleable>
+    <declare-styleable name="Switcher">
+        <attr name="firstButtonText" format="string"/>
+        <attr name="secondButtonText" format="string"/>
+    </declare-styleable>
+</resources>

@@ -1,5 +1,7 @@
 package com.shoshin.data.remote.entities.locations
 
+import java.io.Serializable
+
 data class LocationRemote(
     var id: String? = null,
     var street: String? = null,
@@ -11,4 +13,15 @@ data class LocationRemote(
     var comment: String? = null,
     var coordinate: String? = null,
     var toCoordinate: Boolean = false
-)
+): Serializable {
+    fun fullName() : String {
+        var fullLocation = "$street, д. $house"
+        if(entrance != null && entrance != "")
+            fullLocation += ", подъезд $entrance"
+        if(flat != null && flat != "")
+            fullLocation += ", кв $flat"
+        if(level != null && level != "")
+            fullLocation += ", $level этаж"
+        return fullLocation
+    }
+}

@@ -69,7 +69,7 @@ class MenuFragment :
         binding.errorLayout.isVisible = true
     }
 
-    private fun showError(event: Reaction.Error) {
+    private fun showError(event: Reaction.Error<List<Category>>) {
         toErrorMode()
     }
 

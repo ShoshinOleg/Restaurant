@@ -1,8 +1,10 @@
 package com.shoshin.restaurant.di.usecases
 
 import com.shoshin.domain.usecases.locations.GetLocationsUseCase
+import com.shoshin.domain.usecases.locations.RemoveLocationUseCase
 import com.shoshin.domain.usecases.locations.SetLocationUseCase
 import com.shoshin.domain_abstract.usecases.locations.IGetLocationsUseCase
+import com.shoshin.domain_abstract.usecases.locations.IRemoveLocationUseCase
 import com.shoshin.domain_abstract.usecases.locations.ISetLocationUseCase
 import dagger.Binds
 import dagger.Module
@@ -16,4 +18,6 @@ interface LocationUseCasesModule {
     fun bindGetLocationUseCase(useCase: GetLocationsUseCase): IGetLocationsUseCase
     @Binds
     fun setLocationUseCase(useCase: SetLocationUseCase): ISetLocationUseCase
+    @Binds
+    fun removeLocationUseCase(useCase: RemoveLocationUseCase): IRemoveLocationUseCase
 }

@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -15,13 +15,15 @@ import com.shoshin.domain_abstract.entities.dish.DishOption
 import com.shoshin.restaurant.R
 import com.shoshin.restaurant.common.argument
 import com.shoshin.restaurant.databinding.DishBottomDialogFragmentBinding
-import com.shoshin.restaurant.ui.fragments.cart.CartViewModel
+import com.shoshin.restaurant.ui.fragments.cart.CartViewModel1
 import com.shoshin.restaurant.ui.fragments.categories.category.dish_bottom.options_bottom_fragment.OptionsBottomFragment
 import com.shoshin.restaurant.ui.fragments.categories.category.dish_bottom.options_recycler.OptionAdapter
 import com.shoshin.restaurant.ui.fragments.categories.category.dish_bottom.options_recycler.OptionHolder
 import com.squareup.picasso.Picasso
+import dagger.hilt.android.AndroidEntryPoint
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 
+@AndroidEntryPoint
 class DishBottomDialogFragment:
     BottomSheetDialogFragment() ,
     OptionHolder.OnOptionClick
@@ -30,7 +32,7 @@ class DishBottomDialogFragment:
     private var item: Dish by argument()
     private val adapter = OptionAdapter(this)
     private var count = 1
-    private var cartViewModel: CartViewModel? = null
+    private val cartViewModel: CartViewModel1 by viewModels()
 
     companion object {
         val TAG: String = DishBottomDialogFragment::class.java.simpleName
@@ -56,7 +58,7 @@ class DishBottomDialogFragment:
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(STYLE_NO_FRAME, R.style.LargeAppBottomSheetDialogTheme)
-        cartViewModel = ViewModelProvider(requireActivity()).get(CartViewModel::class.java)
+//        cartViewModel = ViewModelProvider(requireActivity()).get(CartViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -151,7 +153,7 @@ class DishBottomDialogFragment:
 
     private fun onDoOrderCard() {
         if(checkNecessaryOptions()) {
-            cartViewModel?.addItem(item)
+            cartViewModel.addDish(item)
             Toast.makeText(context?.applicationContext, "Блюдо добавлено в корзину", Toast.LENGTH_SHORT).show()
             dismiss()
         } else {

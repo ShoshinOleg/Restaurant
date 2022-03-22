@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/switcherCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+
+        android:layout_margin="@dimen/smallPadding"
+        android:backgroundTint="@color/darkGray"
+
+        app:cardElevation="4dp"
+        app:cardCornerRadius="10dp"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/firstCard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/secondCard"
+                app:layout_constraintBottom_toBottomOf="parent"
+
+                app:cardElevation="4dp"
+                app:cardCornerRadius="10dp"
+                >
+
+                <TextView
+                    android:id="@+id/firstCardText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/padding"
+                    android:gravity="center"
+                    android:textColor="@color/darkGreen"
+                    />
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/secondCard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/firstCard"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:visibility="invisible"
+
+                app:cardElevation="4dp"
+                app:cardCornerRadius="10dp"
+                >
+                <TextView
+                    android:id="@+id/secondCardText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/padding"
+
+                    android:gravity="center"
+                    android:textColor="@color/darkGreen"
+                    />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/first"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/second"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+            <TextView
+                android:id="@+id/second"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@+id/first"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+
+

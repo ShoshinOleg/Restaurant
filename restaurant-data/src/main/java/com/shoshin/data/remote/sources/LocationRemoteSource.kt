@@ -1,5 +1,6 @@
 package com.shoshin.data.remote.sources
 
+import android.util.Log
 import com.shoshin.data.entities.locations.LocationData
 import com.shoshin.data.interfaces.services.remote.ILocationRemoteService
 import com.shoshin.data.interfaces.sources.remote.ILocationRemoteSource
@@ -26,5 +27,22 @@ class LocationRemoteSource @Inject constructor(
             locationDataRemoteMapper.mapFrom(
                 locationService.setLocation(locationRemote)
             )
+        }
+
+    override suspend fun removeLocation(location: LocationData): Reaction<LocationData> =
+        if(location.id != null) {
+            Log.e("r1", "r1")
+            NetworkHelper.safeApiCall {
+                Log.e("r2", "r2")
+                Log.e("location.id", "location.id=${location.id}")
+                val abc = locationService.removeLocation(location.id!!)
+                Log.e("r3", "r3")
+                locationDataRemoteMapper.mapFrom(
+                    abc
+                )
+            }
+        } else {
+            Log.e("r5", "r5")
+            Reaction.Error(message = "Не удалось удалить. Не задан идентификатор адреса")
         }
 }
