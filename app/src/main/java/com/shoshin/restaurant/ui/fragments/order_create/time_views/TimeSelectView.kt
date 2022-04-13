@@ -68,7 +68,6 @@ class TimeSelectView @JvmOverloads constructor(
             calendar.set(Calendar.MINUTE, tempCalendar.get(Calendar.MINUTE))
             val formatTime = SimpleDateFormat("HH:mm")
             binding.tvTime.text = formatTime.format(calendar.time)
-            binding.tvTime.setTextColor(ContextCompat.getColor(context, R.color.black))
             isTimeSet = true
         } else {
             calendar.set(Calendar.HOUR_OF_DAY, 0)

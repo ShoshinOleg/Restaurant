@@ -5,7 +5,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:fitsSystemWindows="true"
-
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,7 +23,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:src="@drawable/ic_menu"
+            tools:src="@drawable/ic_menu"
             />
         <TextView
             android:id="@+id/name"
@@ -37,7 +36,6 @@
             app:layout_constraintTop_toBottomOf="@+id/image"
 
             tools:text="Название блюда"
-            android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
             />
@@ -70,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             app:layout_constraintTop_toBottomOf="@id/optionsRecycler"
-            android:background="@color/lightGray"
+            style="@style/HorizontalDivider"
             />
 
         <include
@@ -109,7 +107,9 @@
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground"
             android:background="@drawable/ripple_effect"
+            app:cardBackgroundColor="?attr/background"
             >
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/doOrder"
                 android:layout_width="match_parent"

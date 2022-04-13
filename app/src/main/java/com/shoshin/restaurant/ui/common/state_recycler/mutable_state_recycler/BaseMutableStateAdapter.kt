@@ -14,6 +14,7 @@ abstract class BaseMutableStateAdapter<
     protected var items: MutableList<E> = ArrayList()
     protected var states: MutableList<S> = ArrayList()
     override fun getItemCount(): Int = items.size
+    var onCountChange: (count: Int) -> Unit = {}
 
     abstract fun same(it1: E, it2: E): Boolean
     abstract fun getInitialState(): S
@@ -28,6 +29,7 @@ abstract class BaseMutableStateAdapter<
         items = data
         states = generateSequence { initialState }.take(data.size).toMutableList()
         notifyItemRangeChanged(0, data.size)
+        onCountChange(items.size)
     }
 
     fun setItem(item: E): Int {
@@ -44,6 +46,7 @@ abstract class BaseMutableStateAdapter<
         items.add(item)
         states.add(getInitialState())
         notifyItemInserted(items.size-1)
+        onCountChange(items.size)
         return items.size-1
     }
 
@@ -53,6 +56,7 @@ abstract class BaseMutableStateAdapter<
             items.removeAt(index)
             states.removeAt(index)
             notifyItemRemoved(index)
+            onCountChange(items.size)
         }
         return index
     }

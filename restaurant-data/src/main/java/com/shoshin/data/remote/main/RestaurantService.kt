@@ -44,7 +44,7 @@ interface RestaurantService:
                 .addInterceptor(AuthOkHttpInterceptor(userTokenRepository))
                 .build()
             val retrofit = Retrofit.Builder()
-                .baseUrl(Constants.BAS_URL)
+                .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build()

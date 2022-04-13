@@ -9,24 +9,32 @@ import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.shoshin.domain_abstract.common.Reaction
 import com.shoshin.restaurant.R
 import com.shoshin.restaurant.common.argument
 import com.shoshin.restaurant.databinding.LoginEnterCodeFragmentBinding
 import com.shoshin.restaurant.ui.common.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
+import java.io.Serializable
 
 @AndroidEntryPoint
 class LoginEnterCodeFragment: Fragment(R.layout.login_enter_code_fragment) {
     private val binding by viewBinding(LoginEnterCodeFragmentBinding::bind)
     private var verificationId: String by argument()
     private val loginViewModel: LoginViewModel by viewModels()
+    private val savedStateHandle by lazy { findNavController().previousBackStackEntry!!.savedStateHandle }
 
     companion object {
-        fun newInstance(verificationId: String): LoginEnterCodeFragment {
-            return LoginEnterCodeFragment().apply {
-                this.verificationId = verificationId
-            }
+        const val LOGIN_SUCCESSFUL: String = "LOGIN_SUCCESSFUL"
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if(Firebase.auth.currentUser != null) {
+            savedStateHandle.set(LoginEnterNumberPhoneFragment.LOGIN_SUCCESSFUL, true)
+            findNavController().popBackStack()
         }
     }
 
@@ -37,6 +45,7 @@ class LoginEnterCodeFragment: Fragment(R.layout.login_enter_code_fragment) {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        savedStateHandle.set(LOGIN_SUCCESSFUL, false)
         toEnterMode()
         Log.e("verId", verificationId)
         binding.nextButton.setOnClickListener { enterCode() }
@@ -48,7 +57,10 @@ class LoginEnterCodeFragment: Fragment(R.layout.login_enter_code_fragment) {
         loginViewModel.isSignedIn.observe(requireActivity(), { event ->
             when(event) {
                 is Reaction.Progress -> toDownloadMode()
-                is Reaction.Success -> findNavController().navigate(R.id.menu)
+                is Reaction.Success -> {
+                    savedStateHandle.set(LOGIN_SUCCESSFUL, true)
+                    findNavController().popBackStack()
+                }
                 is Reaction.Error -> toErrorMode(event.message ?: "Ошибка входа")
             }
         })

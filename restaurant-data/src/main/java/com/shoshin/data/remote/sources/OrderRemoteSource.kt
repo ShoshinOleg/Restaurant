@@ -20,4 +20,9 @@ class OrderRemoteSource @Inject constructor(
         NetworkHelper.safeApiCall {
             orderRemoteService.getOrdersMetadata()
         }
+
+    override suspend fun getOrder(orderId: String): Reaction<Order> =
+        NetworkHelper.safeApiCall {
+            orderRemoteService.getOrder(orderId)
+        }
 }

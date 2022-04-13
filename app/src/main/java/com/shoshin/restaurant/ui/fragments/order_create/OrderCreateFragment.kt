@@ -4,9 +4,13 @@ import android.app.DatePickerDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.webkit.ServiceWorkerController
+import android.webkit.WebView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.firebase.auth.ktx.auth
@@ -19,9 +23,14 @@ import com.shoshin.restaurant.R
 import com.shoshin.restaurant.databinding.OrderCreateFragmentBinding
 import com.shoshin.restaurant.ui.fragments.cart.CartViewModel1
 import com.shoshin.restaurant.ui.fragments.locations.LocationsViewModel
+import com.shoshin.restaurant.ui.fragments.locations.location_add.LocationAddDialogFragment
+import com.shoshin.restaurant.ui.fragments.locations.recycler.LocationHolder
+import com.shoshin.restaurant.ui.fragments.login.LoginEnterNumberPhoneFragment
 import com.shoshin.restaurant.ui.fragments.order_create.locations_recycler.LocationCheckableAdapter
+import com.shoshin.restaurant.ui.fragments.order_create.locations_recycler.LocationCheckableHolder
 import com.shoshin.restaurant.ui.fragments.order_create.time_picker.TimePickerDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -34,7 +43,7 @@ class OrderCreateFragment: Fragment(R.layout.order_create_fragment) {
     }
     private val cartViewModel: CartViewModel1 by viewModels()
     private val scheduleViewModel: ScheduleViewModel by viewModels()
-    private val orderViewModel: OrderViewModel by viewModels()
+    private val orderViewModel: OrderCreateViewModel by viewModels()
 
     private var order = Order()
     private var availableTimeRange: AvailableTimeRange? = null
@@ -53,16 +62,69 @@ class OrderCreateFragment: Fragment(R.layout.order_create_fragment) {
         )
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        Log.e("orderCreate", "orderCreate")
+        super.onCreate(savedInstanceState)
+
+        val navController = findNavController()
+
+        val currentBackStackEntry = navController.currentBackStackEntry!!
+        val savedStateHandle = currentBackStackEntry.savedStateHandle
+        savedStateHandle.getLiveData<Boolean>(LoginEnterNumberPhoneFragment.LOGIN_SUCCESSFUL)
+            .observe(currentBackStackEntry) { success ->
+                Log.e("orders", "success=$success")
+                if(!success) {
+                    val startDestination = navController.graph.startDestinationId
+                    val navOptions = NavOptions.Builder()
+                        .setPopUpTo(startDestination, true)
+                        .build()
+                    navController.navigate(startDestination, null, navOptions)
+                }
+            }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initLocations()
-        initPaymentMethodBlock()
-        initOrderInfo()
-        subscribeSchedule()
-        observeUpdatedOrder()
-        initCreateOrderButton()
-        cartViewModel.getItems()
-        scheduleViewModel.getDefaultSchedule()
+
+        if(Firebase.auth.currentUser == null) {
+            Log.e("t1", "t1")
+            findNavController().navigate(R.id.loginEnterPhone)
+        } else {
+            Log.e("t2", "t2")
+            initLocations()
+            initPaymentMethodBlock()
+            initOrderInfo()
+            subscribeSchedule()
+            observeUpdatedOrder()
+            initCreateOrderButton()
+            cartViewModel.getItems()
+            scheduleViewModel.getDefaultSchedule()
+            setupAddLocationButtonClickListener()
+            subscribeRemovedLocation()
+        }
+    }
+
+    private fun setupAddLocationButtonClickListener() {
+        binding.orderLocationCheckView.setOnAddClickListener {
+            LocationAddDialogFragment.show(
+                parentFragmentManager,
+                LocationAddDialogFragment.REQUEST_KEY_ADD
+            )
+        }
+        setupAddLocationListener()
+    }
+
+    private fun setupAddLocationListener(){
+        LocationAddDialogFragment
+            .setupListener(
+                parentFragmentManager,
+                this,
+                LocationAddDialogFragment.REQUEST_KEY_ADD,
+            ) {
+                Log.e("item", "item=$it")
+//                binding.orderLocationCheckView?.setState()
+                binding.orderLocationCheckView.adapter?.setItem(it)
+            }
     }
 
     private fun initDateTimeBlock(weekSchedule: WeekSchedule) {
@@ -92,6 +154,28 @@ class OrderCreateFragment: Fragment(R.layout.order_create_fragment) {
                     parentFragmentManager,
                     range
                 )
+            }
+        }
+    }
+
+    private fun subscribeRemovedLocation() {
+        lifecycleScope.launch {
+            locationsViewModel.removedLocation.collect { event ->
+                when(event) {
+                    is Reaction.Success -> binding.orderLocationCheckView.adapter?.removeItem(event.data)
+                    is Reaction.Progress -> event.data?.let { location ->
+                        binding.orderLocationCheckView.adapter?.setBodyState(
+                            location,
+                            LocationCheckableHolder.BodyState.Progress
+                        )
+                    }
+                    is Reaction.Error -> event.data?.let { location ->
+                        binding.orderLocationCheckView.adapter?.setBodyState(
+                            location,
+                            LocationCheckableHolder.BodyState.Error
+                        )
+                    }
+                }
             }
         }
     }
@@ -226,8 +310,15 @@ class OrderCreateFragment: Fragment(R.layout.order_create_fragment) {
         }
     }
 
-    private fun onEditLocation(location: Location) {}
-    private fun onRemoveLocation(location: Location) {}
+    private fun onEditLocation(location: Location) {
+        LocationAddDialogFragment.show(
+            parentFragmentManager,
+            LocationAddDialogFragment.REQUEST_KEY_ADD,
+            location
+        )
+    }
+
+    private fun onRemoveLocation(location: Location) = locationsViewModel.removeLocation(location)
 
     private fun onCheckLocation(location: Location?) {
         if(binding.deliverySwitcher.selectedTab == 0) {
@@ -251,8 +342,8 @@ class OrderCreateFragment: Fragment(R.layout.order_create_fragment) {
                 is Reaction.Progress -> binding.creationProgress.visibility = View.VISIBLE
                 is Reaction.Success -> {
                     cartViewModel.clearCart()
-                    val directions = OrderCreateFragmentDirections.toOrders()
-                    findNavController().navigate(directions)
+//                    orderViewModel.
+                    findNavController().popBackStack()
                 }
                 is Reaction.Error -> {}//сделать обработку ошибки
             }

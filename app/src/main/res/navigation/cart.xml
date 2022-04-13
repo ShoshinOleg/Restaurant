@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cart"
+    app:startDestination="@id/cartScreen">
+
+    <fragment
+        android:id="@+id/loginEnterPhone"
+        android:name="com.shoshin.restaurant.ui.fragments.login.LoginEnterNumberPhoneFragment"
+        android:label="Вход"
+        tools:layout="@layout/login_enter_number_phone_fragment"
+        >
+        <action
+            android:id="@+id/toEnterCode"
+            app:destination="@id/loginEnterCode" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginEnterCode"
+        android:name="com.shoshin.restaurant.ui.fragments.login.LoginEnterCodeFragment"
+        tools:label="Код"
+        tools:layout="@layout/login_enter_code_fragment"
+        >
+        <argument
+            android:name="verificationId"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/cartScreen"
+        android:name="com.shoshin.restaurant.ui.fragments.cart.CartFragment"
+        android:label="Корзина"
+        tools:layout="@layout/cart_fragment"
+        >
+        <action
+            android:id="@+id/toCreateOrder"
+            app:destination="@+id/orderCreate"
+            />
+        <action
+            android:id="@+id/toMenu"
+            app:destination="@+id/menu"
+            />
+        <action
+            android:id="@+id/toLogin"
+            app:destination="@+id/loginEnterPhone"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/orderCreate"
+        android:name="com.shoshin.restaurant.ui.fragments.order_create.OrderCreateFragment"
+        android:label="Оформление заказа"
+        tools:layout="@layout/order_create_fragment"
+        >
+        <action
+            android:id="@+id/toOrders"
+            app:destination="@+id/orders"
+            />
+
+    </fragment>
+
+</navigation>

@@ -6,6 +6,7 @@ import com.shoshin.domain_abstract.entities.order.OrderMetadata
 import retrofit2.http.Body
 
 interface IOrderRemoteSource {
-    suspend fun updateOrder(@Body order: Order): Reaction<OrderMetadata>
+    suspend fun updateOrder(order: Order): Reaction<OrderMetadata>
     suspend fun getOrdersMetadata(): Reaction<List<OrderMetadata>>
+    suspend fun getOrder(orderId: String): Reaction<Order>
 }

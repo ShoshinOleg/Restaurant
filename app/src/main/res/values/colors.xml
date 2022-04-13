@@ -18,6 +18,9 @@
     <color name="grey">#838383</color>
     <color name="darkGray">#E1E0E0</color>
     <color name="lightGray">#F3F3F3</color>
+    <color name="darkGray1">#353535</color>
+    <color name="lightBlack">#454545</color>
+
     <color name="highlightColor">#96D3FB</color>
     <color name="red">#FF0000</color>
     <color name="light_red">#C54040</color>
@@ -30,6 +33,4 @@
 
     <color name="buttonGreenNightBackground">#261D6821</color>
     <color name="backgroundBottomNavigationMenu">#C8C8C8</color>
-
-
 </resources>

@@ -27,6 +27,7 @@ class LocationsFragment: Fragment(R.layout.locations_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupAddLocationButtonClickListener()
+        setupAddLocationListener()
         initRecycler()
         subscribeLocations()
         subscribeRemovedLocation()
@@ -41,7 +42,6 @@ class LocationsFragment: Fragment(R.layout.locations_fragment) {
                 LocationAddDialogFragment.REQUEST_KEY_ADD
             )
         }
-        setupAddLocationListener()
     }
 
     private fun setupAddLocationListener(){
@@ -52,7 +52,7 @@ class LocationsFragment: Fragment(R.layout.locations_fragment) {
                 LocationAddDialogFragment.REQUEST_KEY_ADD,
             ) {
                 Log.e("item", "item=$it")
-                adapter.addItem(it)
+                adapter.setItem(it)
             }
     }
 
@@ -121,7 +121,13 @@ class LocationsFragment: Fragment(R.layout.locations_fragment) {
         toDataMode()
     }
 
-    private fun onEditLocation(location: Location) {}
+    private fun onEditLocation(location: Location) {
+        LocationAddDialogFragment.show(
+            parentFragmentManager,
+            LocationAddDialogFragment.REQUEST_KEY_ADD,
+            location
+        )
+    }
 
     private fun onDeleteLocation(location: Location) = viewModel.removeLocation(location)
 }

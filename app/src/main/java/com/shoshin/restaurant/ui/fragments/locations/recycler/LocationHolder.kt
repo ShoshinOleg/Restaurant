@@ -1,8 +1,10 @@
 package com.shoshin.restaurant.ui.fragments.locations.recycler
 
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import com.shoshin.domain_abstract.entities.locations.Location
+import com.shoshin.restaurant.R
 import com.shoshin.restaurant.databinding.LocationItemHolderBinding
 import com.shoshin.restaurant.ui.common.state_recycler.BaseStateViewHolder
 

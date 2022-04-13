@@ -6,7 +6,7 @@ import java.io.Serializable
 data class Dish (
     var id: String? = null,
     var categoryId: String? = null,
-    var imageURL: String? = null,
+    var imageUrl: String? = null,
     var name: String? = null,
     var price: Int? = null,
     var weight: Int? = null,

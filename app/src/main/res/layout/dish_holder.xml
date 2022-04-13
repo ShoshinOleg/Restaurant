@@ -9,6 +9,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/DishHolderCard"
 
         app:layout_constraintTop_toTopOf="parent"
 
@@ -34,7 +35,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:src="@drawable/ic_menu"
+                tools:src="@drawable/ic_menu"
                 />
             <TextView
                 android:id="@+id/name"
@@ -47,7 +48,6 @@
                 android:paddingTop="@dimen/smallPadding"
                 android:maxLines="2"
                 android:textSize="18sp"
-                android:textColor="@color/black"
                 tools:text="Название блюда"
                 />
 
@@ -73,7 +73,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginHorizontal="@dimen/smallPadding"
                 android:layout_marginBottom="@dimen/smallPadding"
-                app:cardBackgroundColor="@color/lightGray"
+                style="@style/DishPriceCard"
                 app:cardCornerRadius="10dp"
                 app:cardUseCompatPadding="true"
                 android:focusable="true"
@@ -86,7 +86,6 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/smallPadding"
                     tools:text="159 ₽"
-                    android:textColor="@color/black"
                     android:gravity="center"
                     />
 

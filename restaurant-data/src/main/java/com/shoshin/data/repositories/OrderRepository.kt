@@ -15,4 +15,7 @@ class OrderRepository @Inject constructor(
 
     override suspend fun getOrdersMetadata(): Reaction<List<OrderMetadata>> =
         orderRemoteSource.getOrdersMetadata()
+
+    override suspend fun getOrder(orderId: String): Reaction<Order> =
+        orderRemoteSource.getOrder(orderId)
 }

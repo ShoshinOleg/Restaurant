@@ -12,6 +12,7 @@ import javax.inject.Inject
 class CartViewModel1 @Inject constructor(
     private val cartRepository: ICartRepository
 ): ViewModel() {
+//    val v = LiveData
     private val cartItemsFlow = cartRepository.getCartItemsFlow().asLiveData()
     val cartItemsCount = cartItemsFlow.map { it.size }
     val cartPrice = cartItemsFlow.map {

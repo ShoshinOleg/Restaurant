@@ -1,5 +1,6 @@
 package com.shoshin.restaurant.ui.fragments.order_create
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,7 +14,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class OrderViewModel @Inject constructor(
+class OrderCreateViewModel @Inject constructor(
     private val updateOrderUseCase: IUpdateOrderUseCase
 ): ViewModel() {
 
@@ -25,5 +26,10 @@ class OrderViewModel @Inject constructor(
             mutableUpdatedOrder.value = Reaction.Progress()
             mutableUpdatedOrder.value = updateOrderUseCase.execute(order)
         }
+    }
+
+    @SuppressLint("NullSafeMutableLiveData")
+    fun clearOrder() {
+        mutableUpdatedOrder.value = null
     }
 }

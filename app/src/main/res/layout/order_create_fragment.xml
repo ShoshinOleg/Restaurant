@@ -31,8 +31,11 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="@dimen/smallPadding"
                         android:visibility="gone"
-                        android:text="sdfsdfsdf"
+                        android:textSize="16sp"
+                        android:text="Забрать заказ можно по адресу г. Москва, ул. Никольская, д. 19"
                         />
             </com.shoshin.restaurant.ui.common.switcher.Switcher>
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -48,7 +51,6 @@
                     android:text="Время доставки"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:textColor="@color/black"
                     android:paddingTop="@dimen/padding"
                     android:paddingStart="@dimen/padding"
                     app:layout_constraintTop_toTopOf="parent"
@@ -92,7 +94,6 @@
                     android:paddingStart="@dimen/padding"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:textColor="@color/black"
                     android:text="Итого к оплате"
                     />
                 <TextView
@@ -107,7 +108,6 @@
 
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:textColor="@color/black"
                     android:text="229 ₽"
 
                     />
@@ -124,7 +124,6 @@
                         android:id="@+id/cashPayment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
                         android:text="Наличными"
                         android:buttonTint="@color/darkGreen"
                         >
@@ -166,7 +165,6 @@
                                 android:padding="@dimen/smallPadding"
                                 android:text="500"
                                 android:drawableRight="@drawable/ic_arrow_down"
-                                android:textColor="@color/black"
                                 android:drawableTint="@color/black"
                                 />
 
@@ -177,7 +175,6 @@
                         android:id="@+id/receiptCardPayment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
                         android:text="Картой при получении"
                         android:buttonTint="@color/darkGreen"
                         />

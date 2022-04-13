@@ -41,7 +41,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     android:layout_margin="@dimen/smallPadding"
                     tools:text="12.10.2021"
-                    android:textColor="@color/black"
                     android:textSize="18sp"
 
                     android:drawableRight="@drawable/ic_arrow_down"
@@ -79,7 +78,6 @@
                     android:layout_margin="@dimen/smallPadding"
                     android:gravity="center"
                     android:text="10:30"
-                    android:textColor="@color/black"
                     android:textSize="18sp"
 
                     android:drawableRight="@drawable/ic_arrow_down"

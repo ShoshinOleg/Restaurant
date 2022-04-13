@@ -28,7 +28,6 @@
             android:layout_height="wrap_content"
             android:paddingStart="@dimen/smallPadding"
             android:textSize="16sp"
-            android:textColor="@color/black"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@+id/image"
@@ -41,7 +40,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@+id/timeLabel"
             android:textSize="16sp"
-            android:textColor="@color/black"
             android:textStyle="bold"
             tools:text="17:02"
             />

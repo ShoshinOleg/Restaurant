@@ -5,6 +5,7 @@ import com.shoshin.domain_abstract.entities.cart.CartItem1
 import com.shoshin.restaurant.R
 import com.shoshin.restaurant.databinding.CartItemHolderBinding
 import com.shoshin.restaurant.ui.common.recycler.BaseViewHolder
+import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 
@@ -56,8 +57,8 @@ class CartItemHolder(
             RoundedCornersTransformation.CornerType.ALL
         )
         Picasso.get()
-            .load(item?.dish?.imageURL)
-            .placeholder(R.drawable.ic_menu)
+            .load(item?.dish?.imageUrl)
+            .networkPolicy(NetworkPolicy.OFFLINE)
             .transform(transformation)
             .into(binding.image)
     }

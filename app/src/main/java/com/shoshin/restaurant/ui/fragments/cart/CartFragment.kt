@@ -72,10 +72,22 @@ class CartFragment: Fragment(R.layout.cart_fragment) {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         menu.clear()
         inflater.inflate(R.menu.cart_menu, menu)
-        menu.findItem(R.id.more).icon.setTint(
-            ContextCompat.getColor(context?.applicationContext!!, R.color.black)
-        )
     }
+
+    //@Override
+    //public boolean onCreateOptionsMenu(Menu menu) {
+    //    getMenuInflater().inflate(R.menu.menu_main, menu);
+    //
+    //    for(int i = 0; i < menu.size(); i++){
+    //        Drawable drawable = menu.getItem(i).getIcon();
+    //        if(drawable != null) {
+    //            drawable.mutate();
+    //            drawable.setColorFilter(getResources().getColor(R.color.textColorPrimary), PorterDuff.Mode.SRC_ATOP);
+    //        }
+    //    }
+    //
+    //    return true;
+    //}
 
     private fun subscribeTotalPrice() {
         cartViewModel.cartPrice.observe(viewLifecycleOwner, {
@@ -119,13 +131,8 @@ class CartFragment: Fragment(R.layout.cart_fragment) {
 
     private fun setupDoOrderClickListener() {
         binding.doOrder.setOnClickListener {
-            if(Firebase.auth.currentUser != null) {
-                val directions = CartFragmentDirections.toCreateOrder()
-                findNavController().navigate(directions)
-            } else {
-                val directions = CartFragmentDirections.toLogin()
-                findNavController().navigate(directions)
-            }
+            val directions = CartFragmentDirections.toCreateOrder()
+            findNavController().navigate(directions)
         }
     }
 }

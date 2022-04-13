@@ -1,7 +1,9 @@
 package com.shoshin.restaurant.di.usecases
 
+import com.shoshin.domain.usecases.orders.GetOrderUseCase
 import com.shoshin.domain.usecases.orders.GetOrdersMetadataUseCase
 import com.shoshin.domain.usecases.orders.UpdateOrderUseCase
+import com.shoshin.domain_abstract.usecases.orders.IGetOrderUseCase
 import com.shoshin.domain_abstract.usecases.orders.IGetOrdersMetadataUseCase
 import com.shoshin.domain_abstract.usecases.orders.IUpdateOrderUseCase
 import dagger.Binds
@@ -16,4 +18,6 @@ interface OrderUseCasesModule {
     fun bindUpdateOrderUseCase(useCase: UpdateOrderUseCase): IUpdateOrderUseCase
     @Binds
     fun bindGetOrdersMetadataUseCase(useCase: GetOrdersMetadataUseCase): IGetOrdersMetadataUseCase
+    @Binds
+    fun bindGetOrderUseCase(useCase: GetOrderUseCase): IGetOrderUseCase
 }

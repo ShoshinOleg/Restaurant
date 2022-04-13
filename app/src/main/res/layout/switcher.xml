@@ -3,6 +3,7 @@
         android:id="@+id/switcherCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/SwitcherCard"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -11,7 +12,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
 
         android:layout_margin="@dimen/smallPadding"
-        android:backgroundTint="@color/darkGray"
+
 
         app:cardElevation="4dp"
         app:cardCornerRadius="10dp"

@@ -14,8 +14,6 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import com.nex3z.notificationbadge.NotificationBadge
 import com.shoshin.restaurant.R
 import com.shoshin.restaurant.databinding.ActivityMainBinding
@@ -25,8 +23,17 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private val binding by viewBinding(ActivityMainBinding::bind)
-    private lateinit var navController: NavController
-    private lateinit var appBarConfiguration: AppBarConfiguration
+    private val navController: NavController by lazy { findNavController(R.id.fragmentContainer) }
+    private val topLevelDestinations = setOf(
+        R.id.profileScreen,
+        R.id.menuScreen,
+        R.id.cartScreen,
+        R.id.ordersScreen,
+        R.id.loginEnterPhone
+    )
+    private val appBarConfiguration: AppBarConfiguration by lazy{
+        AppBarConfiguration(topLevelDestinations)
+    }
     private var badge: NotificationBadge? = null
     private val cartViewModel: CartViewModel1 by viewModels()
     private var cartItemsCount = 0
@@ -36,35 +43,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(binding.toolbar)
 
-        val topLevelDestinations = setOf(
-            R.id.profile,
-            R.id.menu,
-            R.id.cart,
-            R.id.loginEnterPhone
-        )
-        navController = findNavController(R.id.fragmentContainer)
-        appBarConfiguration = AppBarConfiguration(topLevelDestinations)
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.bottomNavigationView.setupWithNavController(navController)
-
-        binding.bottomNavigationView.setOnItemSelectedListener { item ->
-            when(item.itemId) {
-                R.id.profile ->
-                    if(Firebase.auth.currentUser == null) {
-                        navController.navigate(R.id.loginEnterPhone)
-                    } else {
-                        navController.navigate(R.id.profile)
-                    }
-                    R.id.orders ->
-                        if(Firebase.auth.currentUser == null) {
-                            navController.navigate(R.id.loginEnterPhone)
-                        } else {
-                            navController.navigate(R.id.orders)
-                        }
-                else -> navController.navigate(item.itemId)
-            }
-            true
-        }
 
         cartViewModel.cartItemsCount.observe(this, {
             Log.e("mainActCountChange", "$it")

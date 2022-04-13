@@ -25,7 +25,6 @@
         app:layout_constraintStart_toEndOf="@+id/rb_check"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text = "23:30"
-        android:textColor="@color/black"
         android:textSize="18sp"
         />
 

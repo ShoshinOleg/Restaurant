@@ -133,8 +133,8 @@ class DishBottomDialogFragment:
             RoundedCornersTransformation.CornerType.TOP
         )
         Picasso.get()
-            .load(item.imageURL)
-            .placeholder(R.drawable.ic_menu)
+            .load(item.imageUrl)
+//            .placeholder(R.drawable.ic_menu)
             .transform(transformation)
             .into(binding.image)
     }

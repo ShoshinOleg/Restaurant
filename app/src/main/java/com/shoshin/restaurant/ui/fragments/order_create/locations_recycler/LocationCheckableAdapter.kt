@@ -72,6 +72,14 @@ class LocationCheckableAdapter(
         notifyItemChanged(pos)
     }
 
+    fun setBodyState(location: Location, bodyState: LocationCheckableHolder.BodyState) {
+        val index = items.indexOfFirst { location.id == it.id }
+        if(index != -1) {
+            states[index] = states[index].copy(bodyState = bodyState)
+            notifyItemChanged(index)
+        }
+    }
+
     fun getCheckedLocation(): Location? {
         return if(checkedPosition != null) items[checkedPosition!!] else null
     }

@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
-        android:textColor="@color/black"
         android:textStyle="bold"
         tools:text="Олег"
         app:layout_constraintTop_toTopOf="parent"
@@ -23,7 +22,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:textColor="@color/black"
         tools:text="+79155694257"
         app:layout_constraintTop_toBottomOf="@+id/name"
         android:paddingHorizontal="@dimen/padding"
@@ -47,7 +45,6 @@
         app:layout_constraintTop_toTopOf="@+id/countOrdersLabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@+id/countOrdersLabel"
-        android:textColor="@color/black"
         android:textStyle="bold"
         android:textSize="18sp"
         tools:text = "20"
@@ -61,7 +58,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginHorizontal="@dimen/padding"
         app:layout_constraintTop_toBottomOf="@+id/countOrdersLabel"
-        android:background="@color/darkGray"
+        style="@style/HorizontalDivider"
         />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -89,7 +86,6 @@
             android:id="@+id/locationsLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
             android:text="@string/my_locations"
             app:layout_constraintStart_toEndOf="@id/locationsImage"
             app:layout_constraintTop_toTopOf="parent"
@@ -117,7 +113,7 @@
         android:paddingTop="16dp"
         android:layout_marginHorizontal="@dimen/padding"
         app:layout_constraintTop_toBottomOf="@+id/locationsSection"
-        android:background="@color/darkGray"
+        style="@style/HorizontalDivider"
         />
 
 
@@ -147,7 +143,6 @@
             android:id="@+id/settingsLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
             android:text="@string/settings"
             app:layout_constraintStart_toEndOf="@id/settingsImage"
             app:layout_constraintTop_toTopOf="parent"
@@ -176,7 +171,7 @@
         android:paddingTop="16dp"
         android:layout_marginHorizontal="@dimen/padding"
         app:layout_constraintTop_toBottomOf="@+id/settingsSection"
-        android:background="@color/darkGray"
+        style="@style/HorizontalDivider"
         />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -204,7 +199,6 @@
             android:id="@+id/logoutLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
             android:text="@string/logout"
             app:layout_constraintStart_toEndOf="@id/logoutImage"
             app:layout_constraintTop_toTopOf="parent"
@@ -232,6 +226,6 @@
         android:paddingTop="16dp"
         android:layout_marginHorizontal="@dimen/padding"
         app:layout_constraintTop_toBottomOf="@+id/logoutSection"
-        android:background="@color/darkGray"
+        style="@style/HorizontalDivider"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,7 @@ package com.shoshin.restaurant.ui.fragments.order_create.locations_recycler
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -19,6 +20,7 @@ class LocationsCheckableView @JvmOverloads constructor(
     var adapter: LocationCheckableAdapter? = null
         set(value) {
             binding.locationRecycler.adapter = value
+            value?.onCountChange = ::onCountChange
             field = value
         }
 
@@ -29,17 +31,23 @@ class LocationsCheckableView @JvmOverloads constructor(
         updateView()
     }
 
+    private fun onCountChange(count: Int) {
+        if(count == 0)
+            binding.emptyInfoBlock.visibility = View.VISIBLE
+        else
+            binding.emptyInfoBlock.visibility = View.GONE
+    }
+
+    fun setOnAddClickListener(onClick: () -> Unit = {}) {
+        binding.addLocation.setOnClickListener { onClick() }
+    }
 
     private fun updateView() {
         state.let { state ->
             when(state) {
                 is Reaction.Success -> {
                     binding.progress.visibility = View.GONE
-                    if(state.data.isNotEmpty()) {
-                        adapter?.setupItems(state.data as MutableList)
-                    } else {
-                        binding.emptyInfoBlock.visibility = View.VISIBLE
-                    }
+                    adapter?.setupItems(state.data as MutableList)
                 }
                 is Reaction.Progress -> {
                     binding.progress.visibility = View.VISIBLE

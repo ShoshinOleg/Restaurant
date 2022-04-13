@@ -12,12 +12,13 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/background</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">false</item>
 
         <item name="background">@color/backgroundNight</item>
         <!-- Customize your theme here. -->
         <!--        <item name="android:windowDisablePreview">true</item>-->
         <item name="android:textColorHighlight">@color/highlightColor</item>
+        <item name="android:textColor">@color/lightGray</item>
     </style>
 
     <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
@@ -32,6 +33,68 @@
         <item name="colorPrimary">@color/backgroundNight</item>
         <item name="android:colorPrimaryDark">@color/backgroundNight</item>
         <item name="colorPrimaryDark">@color/backgroundNight</item>
+    </style>
+
+    <style name="MyDatePickerStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/darkGreen</item>
+        <item name="colorOnPrimary">@color/darkGreen</item>
+        <item name="android:textColorSecondary">@color/darkGray</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:windowBackground">@color/backgroundNight</item>
+    </style>
+
+    <style name="LargeAppBottomSheetDialogTheme"
+        parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/LargeAppModalStyle</item>
+    </style>
+
+    <style name="LargeAppModalStyle"
+        parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/large_bottom_sheet_background</item>
+    </style>
+
+    <style name="ActionBarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">?android:attr/textColor</item>
+    </style>
+
+    <style name="HorizontalDivider">
+        <item name="android:background">@color/lightBlack</item>
+    </style>
+
+    <style name="CartItemCounterButton" parent="CardView">
+        <item name="cardBackgroundColor">@color/lightBlack</item>
+    </style>
+
+    <style name="DishHolderCard">
+        <item name="cardBackgroundColor">@color/darkGray1</item>
+    </style>
+
+    <style name="DishPriceCard">
+        <item name="cardBackgroundColor">@color/backgroundNight</item>
+    </style>
+
+    <style name="OptionCard">
+        <item name="cardBackgroundColor">@color/darkGray1</item>
+    </style>
+
+    <style name="OptionAddCard">
+        <item name="cardBackgroundColor">@color/backgroundNight</item>
+    </style>
+
+    <style name="SomeIcon">
+        <item name="tint">@color/lightGray</item>
+    </style>
+
+    <style name="CheckBox">
+        <item name="android:buttonTint">@color/lightGray</item>
+    </style>
+    
+    <style name="TabLayout">
+        <item name="tabBackground">@color/backgroundNight</item>
+    </style>
+
+    <style name="SwitcherCard">
+        <item name="android:backgroundTint">@color/darkGray1</item>
     </style>
 
 <!--    <style name="Theme.EnglishCards" parent="Theme.MaterialComponents.DayNight.NoActionBar">-->

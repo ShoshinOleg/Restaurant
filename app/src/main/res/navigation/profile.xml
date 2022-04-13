@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profile"
+    app:startDestination="@id/profileScreen">
+
+    <fragment
+        android:id="@+id/loginEnterPhone"
+        android:name="com.shoshin.restaurant.ui.fragments.login.LoginEnterNumberPhoneFragment"
+        android:label="Вход"
+        tools:layout="@layout/login_enter_number_phone_fragment"
+        >
+        <action
+            android:id="@+id/toEnterCode"
+            app:destination="@id/loginEnterCode" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginEnterCode"
+        android:name="com.shoshin.restaurant.ui.fragments.login.LoginEnterCodeFragment"
+        tools:label="Код"
+        tools:layout="@layout/login_enter_code_fragment"
+        >
+        <argument
+            android:name="verificationId"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileScreen"
+        android:name="com.shoshin.restaurant.ui.fragments.profile.ProfileFragment"
+        android:label="Профиль"
+        tools:layout="@layout/profile_fragment"
+        >
+        <action
+            android:id="@+id/toLocations"
+            app:destination="@+id/locations"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/locations"
+        android:name="com.shoshin.restaurant.ui.fragments.locations.LocationsFragment"
+        android:label="Адреса"
+        tools:layout="@layout/locations_fragment">
+    </fragment>
+
+
+</navigation>

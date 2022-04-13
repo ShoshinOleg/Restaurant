@@ -14,17 +14,16 @@
         app:layout_constraintEnd_toStartOf="@id/error"
         android:padding="@dimen/padding"
         android:textSize="16sp"
-        android:textColor="@color/black"
         tools:text="Долгое, ул Солнечная, д. 1, кв. 1"
         />
 
     <ImageView
         android:id="@+id/editImage"
+        style="@style/SomeIcon"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginRight="@dimen/smallPadding"
         android:src="@drawable/ic_edit"
-        app:tint="@color/black"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/removeImage"
@@ -32,6 +31,7 @@
 
     <ImageView
         android:id="@+id/removeImage"
+        style="@style/SomeIcon"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:src="@drawable/ic_close"
@@ -39,7 +39,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:tint="@color/black"
         android:contentDescription="@string/remove" />
 
     <ProgressBar

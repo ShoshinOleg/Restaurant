@@ -29,7 +29,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         tools:layout="@layout/menu_fragment"
-        app:navGraph="@navigation/navigation"
+        app:navGraph="@navigation/nav_graph"
         />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

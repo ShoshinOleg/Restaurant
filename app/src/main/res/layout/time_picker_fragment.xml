@@ -22,7 +22,6 @@
             android:padding="@dimen/padding"
             android:text="Выберите время:"
             android:textSize="18sp"
-            android:textColor="@color/black"
             android:textStyle="bold"
             />
 
@@ -53,7 +52,6 @@
             app:layout_constraintTop_toTopOf="parent"
             android:text="Нед доступного времени"
             android:gravity="center"
-            android:textColor="@color/black"
             android:paddingHorizontal="@dimen/padding"
             android:paddingVertical="@dimen/largePadding"
             android:textSize="18sp"

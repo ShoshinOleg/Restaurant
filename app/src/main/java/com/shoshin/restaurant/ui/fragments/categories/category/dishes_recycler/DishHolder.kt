@@ -1,10 +1,12 @@
 package com.shoshin.restaurant.ui.fragments.categories.category.dishes_recycler
 
+import android.util.Log
 import android.view.View
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.shoshin.domain_abstract.entities.dish.Dish
 import com.shoshin.restaurant.R
 import com.shoshin.restaurant.databinding.DishHolderBinding
+import com.shoshin.restaurant.ui.common.WebImageView
 import com.shoshin.restaurant.ui.common.recycler.BaseViewHolder
 import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
@@ -44,11 +46,8 @@ class DishHolder(
             0,
             RoundedCornersTransformation.CornerType.TOP
         )
-        Picasso.get()
-            .load(item.imageURL)
-            .placeholder(R.drawable.ic_menu)
-//            .transform(transformation)
-            .into(binding.image)
+        Log.e("imageUrl", "imageUrl=${item.imageUrl}")
+        WebImageView(binding.image).load(item.imageUrl)
 
         binding.name.text = item.name
         binding.weight.text = itemView.context.getString(R.string.gram_weight, item.weight)

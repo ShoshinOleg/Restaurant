@@ -28,7 +28,7 @@ class LocationsViewModel @Inject constructor(
     fun getLocations(needRemoteDownload: Boolean = false) {
         viewModelScope.launch {
             mutableLocations.value = Reaction.Progress()
-            getLocationsUseCase.execute(needRemoteDownload).collect() {
+            getLocationsUseCase.execute(needRemoteDownload).collect {
                 mutableLocations.value = it
             }
         }

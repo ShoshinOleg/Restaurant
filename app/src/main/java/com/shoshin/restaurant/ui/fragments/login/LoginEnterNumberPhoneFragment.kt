@@ -26,24 +26,41 @@ import java.util.concurrent.TimeUnit
 @AndroidEntryPoint
 class LoginEnterNumberPhoneFragment: Fragment(R.layout.login_enter_number_phone_fragment) {
     private val binding by viewBinding(LoginEnterNumberPhoneFragmentBinding::bind)
-    private lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
+    private val callbacks by lazy { CustomVerificationCallbacks(
+        loginViewModel::signIn,
+        ::onVerificationFailed,
+        ::onSendCode
+    )}
     private val loginViewModel: LoginViewModel by viewModels()
+    private val previousSavedStateHandle by lazy { findNavController().previousBackStackEntry!!.savedStateHandle }
 
-    override fun onStart() {
-        super.onStart()
-        callbacks = CustomVerificationCallbacks(
-            loginViewModel::signIn,
-            ::onVerificationFailed,
-            ::onSendCode
-        )
+    companion object {
+        const val LOGIN_SUCCESSFUL: String = "LOGIN_SUCCESSFUL"
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        if(Firebase.auth.currentUser != null) {
+            previousSavedStateHandle.set(LOGIN_SUCCESSFUL, true)
+            findNavController().popBackStack()
+        } else {
+            val navController = findNavController()
+            val currentBackStackEntry = navController.currentBackStackEntry!!
+            val savedStateHandle = currentBackStackEntry.savedStateHandle
+            savedStateHandle.getLiveData<Boolean>(LoginEnterCodeFragment.LOGIN_SUCCESSFUL)
+                .observe(currentBackStackEntry) { success ->
+                    if(success) {
+                        previousSavedStateHandle.set(LOGIN_SUCCESSFUL, true)
+                        findNavController().popBackStack()
+                    }
+                }
+        }
     }
 
     private fun onSendCode(verificationId: String) {
-        val fragment = LoginEnterCodeFragment.newInstance(verificationId)
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.fragmentContainer, fragment)
-            .addToBackStack("enterPhone")
-            .commit()
+        val directions = LoginEnterNumberPhoneFragmentDirections.toEnterCode(verificationId)
+        findNavController().navigate(directions)
     }
 
     private fun onVerificationFailed(e: FirebaseException) {
@@ -61,7 +78,10 @@ class LoginEnterNumberPhoneFragment: Fragment(R.layout.login_enter_number_phone_
         loginViewModel.isSignedIn.observe(requireActivity(), { event ->
             when(event) {
                 is Reaction.Progress -> toDownloadMode()
-                is Reaction.Success -> findNavController().navigate(R.id.menu)
+                is Reaction.Success -> {
+                    previousSavedStateHandle.set(LOGIN_SUCCESSFUL, true)
+                    findNavController().popBackStack()
+                }
                 is Reaction.Error -> toErrorMode(event.message ?: "Ошибка входа")
             }
         })
@@ -74,6 +94,7 @@ class LoginEnterNumberPhoneFragment: Fragment(R.layout.login_enter_number_phone_
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        previousSavedStateHandle.set(LOGIN_SUCCESSFUL, false)
         toEnterMode()
         binding.nextButton.setOnClickListener { onNextButton() }
         binding.mainConstraint.setOnClickListener { activity?.hideKeyboard() }
