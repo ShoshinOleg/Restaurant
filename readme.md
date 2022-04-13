@@ -1,6 +1,7 @@
 
 <h1 align="center">Restaurant</h1>
 
+(Чтобы запустить приложение в debug режиме, необходимо изменить значение server_url_debug на такое же, как и server_url_release)
 
 ## Общее описание
 
