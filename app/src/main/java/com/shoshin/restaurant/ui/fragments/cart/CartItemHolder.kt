@@ -3,11 +3,13 @@ package com.shoshin.restaurant.ui.fragments.cart
 import android.view.View
 import com.shoshin.domain_abstract.entities.cart.CartItem1
 import com.shoshin.restaurant.R
+import com.shoshin.restaurant.common.images.interfaces.ImageLoader
 import com.shoshin.restaurant.databinding.CartItemHolderBinding
 import com.shoshin.restaurant.ui.common.recycler.BaseViewHolder
-import com.squareup.picasso.NetworkPolicy
-import com.squareup.picasso.Picasso
-import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
+import dagger.hilt.EntryPoint
+import dagger.hilt.InstallIn
+import dagger.hilt.android.EntryPointAccessors
+import dagger.hilt.components.SingletonComponent
 
 class CartItemHolder(
     itemView: View,
@@ -15,6 +17,14 @@ class CartItemHolder(
     private var decreaser: (cartItem: CartItem1) -> Unit = {}
 ) : BaseViewHolder<CartItem1>(itemView) {
     private val binding = CartItemHolderBinding.bind(itemView)
+
+    private val imageLoader: ImageLoader
+
+    @EntryPoint
+    @InstallIn(SingletonComponent::class)
+    internal interface SentenceViewHolderEntryPoint {
+        fun imageLoader(): ImageLoader
+    }
 
     init {
         binding.countBar.addCard.setOnClickListener {
@@ -29,6 +39,12 @@ class CartItemHolder(
             showCount()
             showPrice()
         }
+        val entryPoint = EntryPointAccessors.fromApplication(
+            itemView.context.applicationContext,
+            SentenceViewHolderEntryPoint::class.java
+        )
+        imageLoader = entryPoint.imageLoader()
+        binding.image.clipToOutline = true
     }
 
     override fun bind(newCartItem: CartItem1) {
@@ -50,18 +66,7 @@ class CartItemHolder(
         }
     }
 
-    private fun fillImage() {
-        val transformation = RoundedCornersTransformation(
-            50,
-            0,
-            RoundedCornersTransformation.CornerType.ALL
-        )
-        Picasso.get()
-            .load(item?.dish?.imageUrl)
-            .networkPolicy(NetworkPolicy.OFFLINE)
-            .transform(transformation)
-            .into(binding.image)
-    }
+    private fun fillImage() = imageLoader.load(binding.image, item?.dish?.imageUrl)
 
     private fun fillOptionsField() {
         val listNames = item?.dish?.getSelectedVariantsList()

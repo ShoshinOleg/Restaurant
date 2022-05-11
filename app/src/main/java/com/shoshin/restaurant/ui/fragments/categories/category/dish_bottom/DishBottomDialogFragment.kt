@@ -14,14 +14,14 @@ import com.shoshin.domain_abstract.entities.dish.Dish
 import com.shoshin.domain_abstract.entities.dish.DishOption
 import com.shoshin.restaurant.R
 import com.shoshin.restaurant.common.argument
+import com.shoshin.restaurant.common.images.interfaces.ImageLoader
 import com.shoshin.restaurant.databinding.DishBottomDialogFragmentBinding
 import com.shoshin.restaurant.ui.fragments.cart.CartViewModel1
 import com.shoshin.restaurant.ui.fragments.categories.category.dish_bottom.options_bottom_fragment.OptionsBottomFragment
 import com.shoshin.restaurant.ui.fragments.categories.category.dish_bottom.options_recycler.OptionAdapter
 import com.shoshin.restaurant.ui.fragments.categories.category.dish_bottom.options_recycler.OptionHolder
-import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
-import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class DishBottomDialogFragment:
@@ -33,6 +33,9 @@ class DishBottomDialogFragment:
     private val adapter = OptionAdapter(this)
     private var count = 1
     private val cartViewModel: CartViewModel1 by viewModels()
+
+    @Inject
+    lateinit var imageLoader: ImageLoader
 
     companion object {
         val TAG: String = DishBottomDialogFragment::class.java.simpleName
@@ -70,15 +73,11 @@ class DishBottomDialogFragment:
     }
 
     private fun setupOptionResultListener() {
-        OptionsBottomFragment.setupListener(
-            childFragmentManager,
-            this,
-            { isAdd ->
-                if(isAdd) {
-                    onDoOrderCard()
-                }
+        OptionsBottomFragment.setupListener(childFragmentManager, this) { isAdd ->
+            if (isAdd) {
+                onDoOrderCard()
             }
-        )
+        }
     }
 
     private fun initView() {
@@ -126,18 +125,7 @@ class DishBottomDialogFragment:
         binding.price.text = context?.getString(R.string.rubles_price, item.getTotalPrice())
     }
 
-    private fun fillImage() {
-        val transformation = RoundedCornersTransformation(
-            50,
-            0,
-            RoundedCornersTransformation.CornerType.TOP
-        )
-        Picasso.get()
-            .load(item.imageUrl)
-//            .placeholder(R.drawable.ic_menu)
-            .transform(transformation)
-            .into(binding.image)
-    }
+    private fun fillImage() = imageLoader.load(binding.image, item.imageUrl)
 
     private fun fillOtherInfo() {
         binding.otherInfo.text = context?.getString(R.string.gram_weight, item.weight)
