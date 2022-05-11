@@ -21,7 +21,6 @@ class CategoriesViewModel @Inject constructor(
     val categories = mutableCategories as LiveData<Reaction<List<Category>>>
 
     fun getCategories(needRemoteDownload: Boolean = false) {
-        mutableCategories.value = Reaction.Progress()
         viewModelScope.launch(Dispatchers.Main) {
             getCategoriesUseCase.execute(needRemoteDownload).collect {
                 withContext(Dispatchers.Main) {

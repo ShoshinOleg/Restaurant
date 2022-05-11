@@ -39,21 +39,13 @@ class CategoryRepository @Inject constructor(
     }
 
     private suspend fun FlowCollector<Reaction<List<Category>>>.fetchRemote() {
-        Log.e("tut0", "tut0")
         if(isDataCached()) {
-            Log.e("tut1", "tut1")
             val cats = localCategorySource.getAllCategories()
-            Log.e("cats=", "cats=$cats")
-            Log.e("tut1c", "tut1c")
-
             val localCategories = categoryDomainDataMapper.mapFrom(cats)
-            Log.e("tut2", "tut2")
             emit(Reaction.Progress(localCategories))
         } else {
             emit(Reaction.Progress())
         }
-
-
 
         when(val result = remoteCategorySource.getCategories()) {
             is Reaction.Success -> {
@@ -91,11 +83,4 @@ class CategoryRepository @Inject constructor(
             return diff > 0
         }
     }
-//    override suspend fun getCategories(): Reaction<List<MenuCategory>> {
-//        return NetworkHelper.safeApiCall { service.getCategories() }
-//    }
-
-//    override suspend fun getCategory(id: String): Reaction<MenuCategory> {
-//        return NetworkHelper.safeApiCall { service.getCategory(id) }
-//    }
 }
