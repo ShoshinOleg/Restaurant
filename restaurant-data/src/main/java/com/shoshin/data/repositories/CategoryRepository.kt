@@ -9,9 +9,11 @@ import com.shoshin.domain_abstract.common.Reaction
 import com.shoshin.domain_abstract.entities.category.Category
 import com.shoshin.domain_abstract.repositories.ICategoryRepository
 import com.shoshin.domain_abstract.repositories.IPreferencesRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.withContext
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -26,7 +28,7 @@ class CategoryRepository @Inject constructor(
         const val PREFS_KEY_CATEGORIES_UPDATED_TIME = "PREFS_KEY_CATEGORIES_UPDATED_TIME"
     }
 
-    override suspend fun getCategories(needRemoteDownload: Boolean): Flow<Reaction<List<Category>>> =
+    override suspend fun getCategories(needRemoteDownload: Boolean): Flow<Reaction<List<Category>>> = withContext(Dispatchers.IO) {
         flow {
             when {
                 needRemoteDownload -> fetchRemote()
@@ -34,6 +36,7 @@ class CategoryRepository @Inject constructor(
                 else -> fetchLocal()
             }
         }
+    }
 
     private suspend fun FlowCollector<Reaction<List<Category>>>.fetchRemote() {
         Log.e("tut0", "tut0")
